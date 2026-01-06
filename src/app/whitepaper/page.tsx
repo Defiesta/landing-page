@@ -25,7 +25,7 @@ export default function WhitepaperPage() {
           </header>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Abstract</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">Abstract</h2>
             <div className="bg-gray-900/60 rounded-2xl p-8 border border-gray-700/50">
               <p className="text-gray-300 leading-8">
                 This paper presents a decentralized protocol that enables the creation, discovery, and usage of artificial intelligence agents whose behavior is cryptographically verifiable on-chain. The protocol allows users to delegate capital or decision-making authority to off-chain AI agents while maintaining strict trust minimization guarantees. This is achieved through the combination of zero-knowledge proofs, constrained execution environments, and deterministic on-chain enforcement. The system is designed such that users do not need to trust agent developers, executors, or the AI models themselves, but only the underlying cryptographic assumptions.
@@ -34,31 +34,44 @@ export default function WhitepaperPage() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">1. Introduction</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">1. Introduction</h2>
             <p className="text-gray-300 leading-8 mb-6">
               Artificial intelligence agents are increasingly used in decentralized finance, automated trading, governance automation, and protocol operations. Despite their growing importance, current systems require users to place significant trust in off-chain actors. Users must trust agent developers not to include malicious logic, infrastructure operators not to deviate from declared behavior, and AI models not to act in ways that violate user expectations. This trust assumption is fundamentally incompatible with the ethos of decentralized systems.
             </p>
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-300 leading-8 mb-6">
               This protocol introduces a new primitive referred to as verifiable AI execution. Under this paradigm, every action performed by an AI agent is accompanied by a cryptographic proof that attests that the agent followed a pre-committed program, model, and set of constraints. The result is an AI execution framework that is auditable, enforceable, and trust-minimized.
+            </p>
+
+            <h3 className="text-2xl font-semibold text-white mb-6">1.1 Related Work</h3>
+            <p className="text-gray-300 leading-8 mb-6">
+              Several existing projects explore the intersection of artificial intelligence and blockchain, but they rely on fundamentally different trust and execution assumptions. Autonolas and similar agent coordination frameworks focus on decentralized agent orchestration and incentive alignment, but they do not provide cryptographic guarantees that agents execute a specific program or respect strict behavioral constraints. As a result, correctness and safety ultimately depend on off-chain trust.
+            </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              Bittensor introduces a token-incentivized marketplace for machine learning models, where participants are rewarded based on peer evaluation and network consensus. While effective for coordinating open-ended machine learning research, this approach does not provide deterministic guarantees about agent behavior or enforceable execution constraints. Model outputs are economically incentivized rather than cryptographically verified.
+            </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              Visions.ai proposes a token-driven marketplace for AI agents, emphasizing economic alignment and reputation. However, agent execution remains opaque, and users must trust that reported behavior and performance accurately reflect reality. The system does not provide a mechanism to prove that an agent adhered to a specific strategy or respected predefined safety constraints during execution.
+            </p>
+            <p className="text-gray-300 leading-8">
+              Our approach addresses a fundamentally different problem. Rather than optimizing incentives around unverifiable execution, the protocol enforces correctness at the cryptographic level. By combining deterministic execution environments with zero-knowledge proofs, constrained state transitions, and on-chain verification, the system ensures that every agent action is provably compliant with its declared behavior. Unlike prior work, trust is removed not by social or economic mechanisms alone, but by verifiable computation.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">2. Problem Statement</h2>
+            <h3 className="text-2xl font-semibold text-white mb-6">1.2 Problem Statement</h3>
             <p className="text-gray-300 leading-8">
               Existing AI agent marketplaces rely on opaque off-chain execution environments and unverifiable performance claims. Users cannot independently verify whether an agent executed the advertised strategy, whether historical returns are accurate, or whether funds are at risk of misuse. Smart contracts alone are insufficient to express complex AI logic efficiently, while purely off-chain systems lack enforceability. This gap between expressiveness and verifiability prevents the safe adoption of autonomous agents in Web3.
             </p>
           </section>
-
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">3. Design Goals</h2>
+            <h3 className="text-2xl font-semibold text-white mb-6">1.3 Design Goals</h3>
             <p className="text-gray-300 leading-8">
               The protocol is designed to eliminate unnecessary trust assumptions while remaining practical and scalable. It aims to ensure that no centralized party is required for correct operation, that every agent action can be verified cryptographically, and that participation as a developer, executor, or user remains permissionless. The architecture is intentionally modular so that execution, constraint enforcement, accounting, and analytics can evolve independently. Scalability is achieved by minimizing on-chain computation and leveraging recursive zero-knowledge proofs.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">4. High-Level Architecture</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">2. High-Level Architecture</h2>
             <p className="text-gray-300 leading-8 mb-6">
               The system is composed of several interacting actors and components. Agent developers author AI agents and publish cryptographic commitments to their code and models. Users interact with the protocol through isolated vaults that hold their assets. Executors run agents off-chain and generate proofs of correct execution. Smart contracts deployed on-chain are responsible for verifying proofs, enforcing constraints, and executing authorized actions.
             </p>
@@ -68,7 +81,7 @@ export default function WhitepaperPage() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">5. Agent Lifecycle</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">3. Agent Lifecycle</h2>
             <p className="text-gray-300 leading-8 mb-6">
               The lifecycle of an agent begins with registration. An agent developer compiles the agent into a deterministic execution format, such as WASM, and computes cryptographic commitments to the agent code, the model parameters, and the declared execution constraints. These commitments are published on-chain and become immutable identifiers for the agent.
             </p>
@@ -78,14 +91,14 @@ export default function WhitepaperPage() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">6. User Vaults</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">4. User Vaults</h2>
             <p className="text-gray-300 leading-8">
               Users interact with agents exclusively through dedicated vault smart contracts. Each vault holds the user's assets and enforces strict execution policies. The vault only accepts actions that are accompanied by valid zero-knowledge proofs and that comply with the agent's declared constraints. At no point does an agent or executor gain direct custody of user funds, which significantly reduces the risk of misuse or theft.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">7. Execution Workflow</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">5. Execution Workflow</h2>
             <p className="text-gray-300 leading-8 mb-6">
               Execution proceeds in discrete epochs. During each epoch, an executor collects canonical inputs, including the current vault state and external data such as oracle prices. The agent is then executed off-chain in a deterministic environment using the committed code and model. Following execution, the executor generates a zero-knowledge proof attesting that the execution was correct and that all constraints were respected.
             </p>
@@ -95,42 +108,42 @@ export default function WhitepaperPage() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">8. Zero-Knowledge Proof System</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">6. Zero-Knowledge Proof System</h2>
             <p className="text-gray-300 leading-8">
               The proof system is structured as a composition of several logical circuits. One circuit proves correct agent execution with respect to the committed code and model. Another circuit enforces the declared safety and risk constraints. A third circuit verifies the correctness of state transitions and accounting within the vault. A final circuit computes performance metrics and reputation scores. These circuits are recursively aggregated into a single proof that can be verified efficiently on-chain.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">9. Constraint Model</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">7. Constraint Model</h2>
             <p className="text-gray-300 leading-8">
               Constraints are declared by the agent developer at registration time and enforced cryptographically during execution. These constraints may include limits on drawdown, restrictions on asset transfers, bounds on position sizes, and prohibitions on certain external calls. Any execution that violates these constraints results in an invalid proof and is therefore rejected by the protocol.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">10. Accounting and State Roots</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">8. Accounting and State Roots</h2>
             <p className="text-gray-300 leading-8">
               Vault state is represented by a Merkle-based state root that commits to balances, open positions, and accrued fees. Each execution produces a new state root, and the proof system guarantees that the transition from the previous state root to the new one is correct. This approach allows the protocol to maintain a compact on-chain representation of complex off-chain state.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">11. Performance and Reputation</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">9. Performance and Reputation</h2>
             <p className="text-gray-300 leading-8">
               Performance metrics such as return on investment, volatility, and maximum drawdown are computed within zero-knowledge circuits. Because these metrics are derived from provably correct state transitions, they cannot be forged or manipulated. The resulting reputation scores provide users with a reliable basis for comparing agents.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">12. Incentive Model</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">10. Incentive Model</h2>
             <p className="text-gray-300 leading-8">
               The protocol includes a native incentive structure that aligns the interests of all participants. Users pay execution and performance fees in exchange for verifiable agent behavior. Developers receive royalties proportional to the usage and success of their agents. Executors are compensated for running agents and generating proofs. All fee distribution logic is enforced on-chain and is fully transparent.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">13. Tokenomics</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">11. Tokenomics</h2>
             <p className="text-gray-300 leading-8 mb-6">
               The protocol is governed and coordinated by a native utility token that serves as the economic backbone of the system. This token is designed to align long-term incentives between users, agent developers, executors, and governance participants, while avoiding reliance on speculative mechanics. The token plays an active role in protocol security, coordination, and value distribution rather than serving solely as a medium of exchange.
             </p>
@@ -155,28 +168,28 @@ export default function WhitepaperPage() {
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">14. Security Considerations</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">12. Security Considerations</h2>
             <p className="text-gray-300 leading-8">
               The protocol is designed to mitigate a wide range of attack vectors, including malicious agent code, executor deviation, and state manipulation. Security relies on well-understood cryptographic assumptions underlying hash functions and zero-knowledge proof systems. By minimizing trusted components, the protocol reduces the impact of potential failures.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">15. Scalability Considerations</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">13. Scalability Considerations</h2>
             <p className="text-gray-300 leading-8">
               Scalability is achieved through off-chain execution and recursive proof aggregation. On-chain verification remains lightweight, making the protocol suitable for deployment on layer two networks and rollups. As proof systems improve, the protocol can benefit from reduced costs without fundamental redesign.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">16. Future Work</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">14. Future Work</h2>
             <p className="text-gray-300 leading-8">
               Future extensions of the protocol include governance frameworks for agent standards, composition of multiple agents, on-chain governance over agent upgrades, and integration with hardware-based attestations. These directions aim to further expand the applicability of verifiable AI agents.
             </p>
           </section>
 
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">17. Conclusion</h2>
+            <h2 className="text-3xl font-semibold text-white mb-6 text-center">15. Conclusion</h2>
             <div className="bg-gray-900/60 rounded-2xl p-8 border border-gray-700/50">
               <p className="text-gray-300 leading-8">
                 This protocol introduces a foundational layer for trustless AI agents in decentralized systems. By combining zero-knowledge proofs, constrained execution, and on-chain enforcement, it enables a new class of autonomous agents whose behavior is verifiable, accountable, and economically aligned with user interests.

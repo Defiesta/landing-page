@@ -9,7 +9,12 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white relative">
       <AnimatedBackground />
       <nav className="relative z-10 flex items-center justify-between px-8 py-6">
-        <div className="text-xl font-semibold">DEFIESTA</div>
+        <a href="/" className="group relative">
+          <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="relative px-4 py-2 bg-black rounded-lg text-xl font-semibold text-white hover:text-cyan-400 transition-colors duration-300 border border-transparent group-hover:border-cyan-400/30">
+            DEFIESTA
+          </div>
+        </a>
         <div className="hidden md:flex space-x-8 text-sm font-medium">
           <a href="#about" className="hover:text-gray-300 transition-colors">ABOUT</a>
           <a href="/whitepaper" className="hover:text-gray-300 transition-colors">WHITEPAPER</a>
