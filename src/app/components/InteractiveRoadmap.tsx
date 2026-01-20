@@ -494,7 +494,7 @@ export default function InteractiveRoadmap() {
       </div>
 
       {/* Phase Color Legend */}
-      <div className="absolute bottom-4 left-4 z-20 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-xl p-4 border border-cyan-500/30 backdrop-blur-sm">
+      <div className="absolute bottom-4 left-4 z-20 bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-xl p-4 border border-cyan-500/30 backdrop-blur-sm">
         <h3 className="text-sm font-bold mb-3 text-cyan-300">Development Phases</h3>
         <div className="space-y-2">
           <div className="flex items-center gap-3 text-xs">
@@ -586,27 +586,27 @@ export default function InteractiveRoadmap() {
 
           {/* Technical Header Section */}
           <foreignObject x="200" y="25" width="600" height="200">
-            <div className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-sm">
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-emerald-500/10 animate-pulse"></div>
+            <div className="relative bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-sm">
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-cyan-500/10 via-purple-500/10 to-emerald-500/10 animate-pulse"></div>
               <div className="relative z-10 text-center">
-                <h1 className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400">
+                <h1 className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-purple-400 to-emerald-400">
                   Protocol Development Roadmap
                 </h1>
                 <div className="text-sm text-cyan-300 mb-4 font-medium">
                   Verifiable Execution Kernel for Bounded Financial Agents
                 </div>
                 <div className="grid grid-cols-3 gap-4 text-xs">
-                  <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg p-2 border border-cyan-500/40">
+                  <div className="bg-linear-to-r from-cyan-500/20 to-blue-500/20 rounded-lg p-2 border border-cyan-500/40">
                     <div className="font-semibold text-cyan-300">Phase 1</div>
                     <div className="text-gray-300">Core Protocol Infrastructure</div>
                     <div className="text-gray-400 text-xs mt-1">Q1-Q2 2026</div>
                   </div>
-                  <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-500/40">
+                  <div className="bg-linear-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-500/40">
                     <div className="font-semibold text-purple-300">Phase 2</div>
                     <div className="text-gray-300">MVP Execution Protocol</div>
                     <div className="text-gray-400 text-xs mt-1">Q3 2026</div>
                   </div>
-                  <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg p-2 border border-green-500/40">
+                  <div className="bg-linear-to-r from-green-500/20 to-emerald-500/20 rounded-lg p-2 border border-green-500/40">
                     <div className="font-semibold text-green-300">Phase 3</div>
                     <div className="text-gray-300">Production Hardening</div>
                     <div className="text-gray-400 text-xs mt-1">Q4 2026</div>
@@ -696,7 +696,7 @@ export default function InteractiveRoadmap() {
               
               {/* Main phase container */}
               <foreignObject x="25" y={phase.y - 5} width="130" height="80">
-                <div className={`h-full bg-gradient-to-br ${phase.gradient} p-2 rounded-xl border border-white/20 backdrop-blur-sm`}>
+                <div className={`h-full bg-linear-to-br ${phase.gradient} p-2 rounded-xl border border-white/20 backdrop-blur-sm`}>
                   <div className="text-xs font-bold text-white">{phase.label}</div>
                   <div className="text-xs text-white/90 font-medium mt-1 leading-tight">{phase.subtitle}</div>
                   <div className="text-xs text-white/70 mt-1">{phase.period}</div>
@@ -844,7 +844,7 @@ export default function InteractiveRoadmap() {
 
       {/* Enhanced Selected Item Details */}
       {selectedItem && (
-        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-xl z-30">
+        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-xl z-30">
           {(() => {
             const item = roadmapData.find(i => i.id === selectedItem);
             if (!item) return null;
@@ -854,10 +854,10 @@ export default function InteractiveRoadmap() {
             
             return (
               <>
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-emerald-500/5 animate-pulse"></div>
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-cyan-500/5 via-purple-500/5 to-emerald-500/5 animate-pulse"></div>
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+                    <h3 className="text-lg font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-purple-400">
                       {item.title}
                     </h3>
                     <button
@@ -939,10 +939,6 @@ export default function InteractiveRoadmap() {
                       <ul className="text-xs text-gray-300 space-y-1">
                         <li className="flex items-start gap-2">
                           <span className="text-purple-400 mt-1">✓</span>
-                          <span>10+ production-ready financial agents deployed</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-purple-400 mt-1">✓</span>
                           <span>&lt;5 minute end-to-end execution latency</span>
                         </li>
                         <li className="flex items-start gap-2">
@@ -957,7 +953,7 @@ export default function InteractiveRoadmap() {
                       <ul className="text-xs text-gray-300 space-y-1">
                         <li className="flex items-start gap-2">
                           <span className="text-green-400 mt-1">✓</span>
-                          <span>Protocol handles $10M+ in delegated assets securely</span>
+                          <span>5+ production-ready financial agents deployed</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-green-400 mt-1">✓</span>
@@ -972,7 +968,7 @@ export default function InteractiveRoadmap() {
                   ) : null}
                   
                   {/* Protocol Invariants */}
-                  <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 p-3 rounded-lg border border-orange-500/30">
+                  <div className="bg-linear-to-r from-orange-500/10 to-red-500/10 p-3 rounded-lg border border-orange-500/30">
                     <h4 className="text-sm font-bold mb-2 text-orange-300">Protocol Invariants:</h4>
                     <ul className="text-xs text-gray-300 space-y-1">
                       <li className="flex items-start gap-2">
