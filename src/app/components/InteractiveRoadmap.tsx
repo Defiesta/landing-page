@@ -377,7 +377,7 @@ export default function InteractiveRoadmap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  const phaseColors = {
+  const phaseColors: Record<string, string> = {
     'Q1 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
     'Q2 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
     'Q3 2026': '#FF00FF', // Phase 2 - MVP - Magenta
