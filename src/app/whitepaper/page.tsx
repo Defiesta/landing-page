@@ -79,6 +79,18 @@ export default function WhitepaperPage() {
             <p className="text-gray-300 leading-8 mb-6">
               The system is composed of several interacting actors and components. Agent developers author AI agents and publish cryptographic commitments to their code and models. Users interact with the protocol through isolated vaults that hold their assets. Executors run agents off-chain and generate proofs of correct execution. Smart contracts deployed on-chain are responsible for verifying proofs, enforcing constraints, and executing authorized actions.
             </p>
+
+            <div className="my-12 text-center">
+              <h4 className="text-xl font-semibold text-white mb-6">Protocol Workflow Overview</h4>
+              <div className="bg-gray-900/40 rounded-2xl p-8 border border-gray-700/30">
+                <img 
+                  src="/workflow/workflow.png" 
+                  alt="Protocol Workflow Overview" 
+                  className="w-full max-w-4xl mx-auto rounded-lg shadow-2xl"
+                />
+              </div>
+            </div>
+
             <p className="text-gray-300 leading-8">
               At the protocol level, the architecture includes an agent registry, user vault contracts, a zero-knowledge proof system, verifier contracts, and a metrics engine that maintains verifiable reputation data. Each component has a narrowly defined responsibility in order to minimize complexity and attack surface.
             </p>

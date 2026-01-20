@@ -19,194 +19,211 @@ interface Connection {
 }
 
 const roadmapData: RoadmapItem[] = [
-  // Q1 2026 - Foundations & Protocol Core
+  // Phase 1 - Core Protocol (Q1-Q2 2026)
   {
-    id: 'zk-execution',
-    title: 'zk Execution Environment',
-    description: 'Finalize zkVM choice and define deterministic execution constraints',
+    id: 'canonical-zkvm-guest',
+    title: 'Canonical zkVM Guest + Constraint Kernel',
+    description: 'RISC Zero execution sandbox with deterministic constraints and proof pipeline',
     status: 'in-progress',
     quarter: 'Q1 2026',
-    x: 150,
-    y: 220,
+    x: 200,
+    y: 300,
     category: 'zkvm',
     details: [
-      'Finalize zkVM choice: RISC Zero',
-      'Define deterministic execution constraints',
-      'No network calls, fixed randomness via transcript',
-      'Explicit input/output boundaries'
+      'RISC Zero zkVM implementation',
+      'Constraint engine for agent execution',
+      'Deterministic execution boundaries',
+      'Proof pipeline to Ethereum'
     ]
   },
   {
-    id: 'verifiable-agent-v1',
-    title: 'Verifiable Agent Model v1',
-    description: 'Define canonical agent interface with code hash and commitments',
+    id: 'agent-trait-interface',
+    title: 'Agent Trait Interface',
+    description: 'Canonical agent interface with input/output formats and execution semantics',
     status: 'upcoming',
     quarter: 'Q1 2026',
-    x: 350,
-    y: 220,
+    x: 380,
+    y: 260,
     category: 'agents',
     details: [
-      'Agent = (Code Hash, Input Commitments, Execution Proof, Output Commitments)',
-      'Define canonical agent interface: init(), step(state, input), finalize()',
-      'Verifiable execution model'
+      'Agent trait: init(), execute(), constraints()',
+      'Input format specification',
+      'Output/actions format',
+      'Constraint enforcement semantics'
     ]
   },
   {
-    id: 'transcript-layer',
-    title: 'Transcript & Determinism',
-    description: 'Rolling transcript spec with Rust prover and Solidity verifier alignment',
+    id: 'transcript-determinism',
+    title: 'Transcript & Replay Protection',
+    description: 'Input commitment design, journal canonicalization, and replay protection',
     status: 'upcoming',
     quarter: 'Q1 2026',
     x: 550,
-    y: 220,
+    y: 300,
     category: 'zkvm',
     details: [
-      'Rolling transcript spec (Keccak-based)',
-      'Rust prover implementation',
-      'Solidity verifier implementation',
-      'Deterministic prompt & tool encoding'
+      'Input commitment design',
+      'Journal shaping & canonicalization',
+      'Replay protection mechanisms',
+      'Deterministic execution guarantees'
     ]
   },
   {
-    id: 'smart-contracts-v1',
-    title: 'Smart Contract Skeleton',
-    description: 'Agent registry, proof verification, and reward distribution',
+    id: 'developer-sdk',
+    title: 'Developer Tooling (SDK & CLI)',
+    description: 'Complete SDK with guest generation CLI and example agents',
     status: 'upcoming',
     quarter: 'Q1 2026',
-    x: 750,
-    y: 220,
+    x: 720,
+    y: 260,
     category: 'ecosystem',
     details: [
-      'Agent registry',
-      'Proof verification entrypoint',
-      'Minimal reward distribution logic',
-      'End-to-end demo capability'
+      'Kernel SDK for agent development',
+      'Guest generation CLI',
+      'Example agents and templates',
+      'CI/testing suite for guest + host'
     ]
   },
-
-  // Q2 2026 - MVP: Agent Marketplace
   {
-    id: 'marketplace-v1',
-    title: 'Agent Marketplace v1',
-    description: 'On-chain registry with metadata, pricing, and versioned code hashes',
+    id: 'on-chain-interfaces',
+    title: 'On-Chain Interface Standards',
+    description: 'Vault, proof submission, and registry interfaces with multionce scheme',
     status: 'upcoming',
     quarter: 'Q2 2026',
     x: 150,
-    y: 380,
-    category: 'marketplace',
-    details: [
-      'On-chain registry of agents',
-      'Metadata: description, pricing, constraints',
-      'Versioned agent code hashes',
-      'Discoverable agent ecosystem'
-    ]
-  },
-  {
-    id: 'economic-layer',
-    title: 'Economic Layer',
-    description: 'Pay-per-execution model with staking and slashing mechanisms',
-    status: 'upcoming',
-    quarter: 'Q2 2026',
-    x: 350,
-    y: 380,
+    y: 450,
     category: 'ecosystem',
     details: [
-      'Pay-per-execution model',
-      'Staking for agent publishers',
-      'Slashing for invalid proofs',
-      'Economic incentive alignment'
+      'Vault interface standard',
+      'Proof submission interface',
+      'Agent registry specification',
+      'Replay/multinonce scheme'
     ]
   },
   {
-    id: 'execution-flow-v1',
+    id: 'execution-flow-mvp',
     title: 'Execution Flow v1',
-    description: 'Complete user-to-settlement flow with off-chain execution',
+    description: 'Complete user-to-settlement flow with first agent deployment',
     status: 'upcoming',
     quarter: 'Q2 2026',
-    x: 550,
-    y: 380,
+    x: 350,
+    y: 420,
     category: 'agents',
     details: [
-      'User submits input + fee',
-      'Off-chain executor runs agent in zkVM',
-      'Proof + output posted on-chain',
+      'End-to-end execution pipeline',
+      'First agent deployment + proof settlement',
+      'User allocation to agents',
       'Automatic settlement'
     ]
   },
   {
-    id: 'developer-tooling',
-    title: 'Developer Tooling',
-    description: 'Rust SDK and tooling for agent development and testing',
+    id: 'defi-integration-mvp',
+    title: 'DeFi & On-chain Integration',
+    description: 'Vaults, registry, and verifier contracts with basic DeFi interactions',
+    status: 'upcoming',
+    quarter: 'Q2 2026',
+    x: 550,
+    y: 450,
+    category: 'defi',
+    details: [
+      'User vault contracts',
+      'Agent registry deployment',
+      'Proof verifier contracts',
+      'Basic DeFi interaction patterns'
+    ]
+  },
+  {
+    id: 'proof-format-standard',
+    title: 'Proof Format Standardization',
+    description: 'Receipt structure, journal formats, and verification specifications',
     status: 'upcoming',
     quarter: 'Q2 2026',
     x: 750,
-    y: 380,
-    category: 'ecosystem',
+    y: 420,
+    category: 'zkvm',
     details: [
-      'Rust SDK for agent authors',
-      'Deterministic prompt compiler',
-      'Local prover + verifier tooling',
-      'Developer documentation'
+      'Receipt structure specification',
+      'Journal format standards',
+      'Verification interface',
+      'Proof metadata schemas'
     ]
   },
 
-  // Q3 2026 - Advanced Agents & Composability
+  // Phase 2 - Marketplace & Economics (Q3 2026)
   {
-    id: 'stateful-agents',
-    title: 'Stateful & Long-Running Agents',
-    description: 'Persistent state commitments and multi-step execution proofs',
+    id: 'agent-marketplace-v1',
+    title: 'Agent Marketplace v1',
+    description: 'Listing/registry UI with agent discovery and versioning',
     status: 'upcoming',
     quarter: 'Q3 2026',
-    x: 150,
-    y: 540,
-    category: 'agents',
+    x: 200,
+    y: 600,
+    category: 'marketplace',
     details: [
-      'Persistent agent state commitments',
-      'Multi-step execution proofs',
-      'On-chain state root updates',
-      'Complex agent workflows'
+      'Agent listing and discovery UI',
+      'Versioning and metadata',
+      'Agent performance metrics',
+      'Search and filtering'
     ]
   },
   {
-    id: 'defi-integration',
-    title: 'DeFi & On-chain Integration',
-    description: 'Agents that read on-chain state and generate verifiable trading decisions',
+    id: 'economic-layer-mvp',
+    title: 'Economic Layer (Fees & Royalties)',
+    description: 'MVP allocation, fee routing, and basic subscription models',
     status: 'upcoming',
     quarter: 'Q3 2026',
-    x: 350,
-    y: 540,
-    category: 'defi',
+    x: 400,
+    y: 570,
+    category: 'ecosystem',
     details: [
-      'Read on-chain state',
-      'Generate verifiable trading decisions',
-      'Interact via execution adapters',
-      'Real DeFi use cases'
+      'Allocation + fee routing',
+      'Basic subscription models',
+      'Developer royalties',
+      'Transparent fee structure'
     ]
   },
   {
-    id: 'agent-composition',
-    title: 'Agent Composition',
-    description: 'Agent-to-agent calls with proof aggregation strategies',
+    id: 'allocator-dashboard',
+    title: 'Allocator Dashboard',
+    description: 'Better UX for allocators with portfolio management and analytics',
     status: 'upcoming',
     quarter: 'Q3 2026',
-    x: 550,
-    y: 540,
-    category: 'agents',
+    x: 600,
+    y: 600,
+    category: 'marketplace',
     details: [
-      'Agent → Agent calls',
-      'Proof aggregation strategies',
-      'Shared transcript standards',
-      'Composable agent pipelines'
+      'Portfolio management interface',
+      'Agent performance analytics',
+      'Allocation tools',
+      'Risk management dashboard'
     ]
   },
   {
-    id: 'performance-improvements',
+    id: 'monitoring-observability',
+    title: 'Monitoring & Observability',
+    description: 'Proof latency, execution cost, and uptime dashboards for allocators',
+    status: 'upcoming',
+    quarter: 'Q3 2026',
+    x: 800,
+    y: 570,
+    category: 'ecosystem',
+    details: [
+      'Proof latency monitoring',
+      'Execution cost tracking',
+      'Uptime dashboards',
+      'Performance metrics'
+    ]
+  },
+
+  // Phase 3 - Scale & Security (Q4 2026)
+  {
+    id: 'performance-optimizations',
     title: 'Performance Improvements',
     description: 'Proof size reduction, batch verification, and cost optimizations',
     status: 'upcoming',
-    quarter: 'Q3 2026',
-    x: 750,
-    y: 540,
+    quarter: 'Q4 2026',
+    x: 250,
+    y: 750,
     category: 'zkvm',
     details: [
       'Proof size reduction',
@@ -215,90 +232,132 @@ const roadmapData: RoadmapItem[] = [
       'Scalability improvements'
     ]
   },
-
-  // Q4 2026 - Protocol Hardening & Decentralization
   {
-    id: 'security-formalization',
+    id: 'security-audit',
     title: 'Security & Formalization',
-    description: 'External audits, formal guarantees, and adversarial agent modeling',
+    description: 'External audits, formal specification, and security benchmarks',
     status: 'upcoming',
     quarter: 'Q4 2026',
-    x: 150,
-    y: 700,
+    x: 450,
+    y: 720,
     category: 'ecosystem',
     details: [
-      'External audits (contracts + zk circuits)',
-      'Formal determinism guarantees',
-      'Adversarial agent model',
-      'Security hardening'
+      'External security audits',
+      'Formal specification',
+      'Security benchmarks',
+      'Vulnerability assessments'
     ]
   },
   {
-    id: 'decentralized-execution',
+    id: 'constraint-system-spec',
+    title: 'Constraint System Specification',
+    description: 'Advanced constraint engine with formal verification and composability',
+    status: 'upcoming',
+    quarter: 'Q4 2026',
+    x: 650,
+    y: 750,
+    category: 'zkvm',
+    details: [
+      'Formal constraint specification',
+      'Advanced constraint types',
+      'Constraint composability',
+      'Verification guarantees'
+    ]
+  },
+  {
+    id: 'multi-agent-composition',
+    title: 'Multi-Agent Composition',
+    description: 'Agent-to-agent calls with proof aggregation and composable patterns',
+    status: 'upcoming',
+    quarter: 'Q4 2026',
+    x: 850,
+    y: 720,
+    category: 'agents',
+    details: [
+      'Agent → Agent communication',
+      'Proof aggregation strategies',
+      'Multi-agent composition primitives',
+      'Composable execution patterns'
+    ]
+  },
+
+  // Future/Post-MVP (2027+) - Moved from earlier phases
+  {
+    id: 'stateful-agents-future',
+    title: 'Stateful & Long-Running Agents',
+    description: 'Long-lived stateful agents with persistent state (Post-MVP)',
+    status: 'upcoming',
+    quarter: '2027+',
+    x: 300,
+    y: 900,
+    category: 'agents',
+    details: [
+      'Persistent agent state',
+      'Long-running execution',
+      'State management protocols',
+      'Complex workflows'
+    ]
+  },
+  {
+    id: 'decentralized-execution-future',
     title: 'Decentralized Execution Network',
-    description: 'Multiple executors with proof race, redundancy, and reputation',
+    description: 'Multiple executors with proof races and decentralized infrastructure (Post-MVP)',
     status: 'upcoming',
-    quarter: 'Q4 2026',
-    x: 350,
-    y: 700,
-    category: 'ecosystem',
-    details: [
-      'Multiple executors',
-      'Proof race / redundancy',
-      'Executor reputation & slashing',
-      'Decentralized infrastructure'
-    ]
-  },
-  {
-    id: 'governance-layer',
-    title: 'Governance Layer',
-    description: 'Parameter governance, agent standards evolution, and treasury management',
-    status: 'upcoming',
-    quarter: 'Q4 2026',
+    quarter: '2027+',
     x: 550,
-    y: 700,
+    y: 880,
     category: 'ecosystem',
     details: [
-      'Parameter governance',
-      'Agent standards evolution',
-      'Treasury management',
-      'Community governance'
+      'Multiple executor network',
+      'Proof race mechanisms',
+      'Decentralized infrastructure',
+      'Executor reputation system'
     ]
   },
   {
-    id: 'mainnet-launch',
-    title: 'Mainnet Launch',
-    description: 'Permissionless publishing, incentivized executors, real economic usage',
+    id: 'governance-future',
+    title: 'Governance Layer',
+    description: 'Protocol governance and community management (Post-MVP)',
     status: 'upcoming',
-    quarter: 'Q4 2026',
-    x: 750,
-    y: 700,
-    category: 'marketplace',
+    quarter: '2027+',
+    x: 800,
+    y: 900,
+    category: 'ecosystem',
     details: [
-      'Permissionless agent publishing',
-      'Incentivized executors',
-      'Real economic usage',
-      'Open agent ecosystem'
+      'Protocol governance',
+      'Parameter management',
+      'Community coordination',
+      'Treasury management'
     ]
   }
 ];
 
 const connections: Connection[] = [
-  { from: 'zk-execution', to: 'verifiable-agent-v1' },
-  { from: 'verifiable-agent-v1', to: 'transcript-layer' },
-  { from: 'transcript-layer', to: 'smart-contracts-v1' },
-  { from: 'zk-execution', to: 'marketplace-v1' },
-  { from: 'verifiable-agent-v1', to: 'economic-layer' },
-  { from: 'transcript-layer', to: 'execution-flow-v1' },
-  { from: 'smart-contracts-v1', to: 'developer-tooling' },
-  { from: 'marketplace-v1', to: 'stateful-agents' },
-  { from: 'economic-layer', to: 'defi-integration' },
-  { from: 'execution-flow-v1', to: 'agent-composition' },
-  { from: 'developer-tooling', to: 'performance-improvements' },
-  { from: 'stateful-agents', to: 'security-formalization' },
-  { from: 'defi-integration', to: 'decentralized-execution' },
-  { from: 'agent-composition', to: 'governance-layer' },
-  { from: 'performance-improvements', to: 'mainnet-launch' }
+  // Phase 1 internal connections
+  { from: 'canonical-zkvm-guest', to: 'agent-trait-interface' },
+  { from: 'agent-trait-interface', to: 'transcript-determinism' },
+  { from: 'transcript-determinism', to: 'developer-sdk' },
+  { from: 'canonical-zkvm-guest', to: 'on-chain-interfaces' },
+  { from: 'agent-trait-interface', to: 'execution-flow-mvp' },
+  { from: 'transcript-determinism', to: 'defi-integration-mvp' },
+  { from: 'developer-sdk', to: 'proof-format-standard' },
+  
+  // Phase 1 to Phase 2 connections
+  { from: 'on-chain-interfaces', to: 'agent-marketplace-v1' },
+  { from: 'execution-flow-mvp', to: 'economic-layer-mvp' },
+  { from: 'defi-integration-mvp', to: 'allocator-dashboard' },
+  { from: 'proof-format-standard', to: 'monitoring-observability' },
+  
+  // Phase 2 to Phase 3 connections
+  { from: 'agent-marketplace-v1', to: 'performance-optimizations' },
+  { from: 'economic-layer-mvp', to: 'security-audit' },
+  { from: 'allocator-dashboard', to: 'constraint-system-spec' },
+  { from: 'monitoring-observability', to: 'multi-agent-composition' },
+  
+  // Phase 3 to Future connections
+  { from: 'performance-optimizations', to: 'stateful-agents-future' },
+  { from: 'security-audit', to: 'decentralized-execution-future' },
+  { from: 'constraint-system-spec', to: 'governance-future' }
 ];
 
 export default function InteractiveRoadmap() {
@@ -312,18 +371,19 @@ export default function InteractiveRoadmap() {
   const svgRef = useRef<SVGSVGElement>(null);
 
   const categoryColors = {
-    zkvm: '#06B6D4', // Cyan
-    agents: '#10B981', // Emerald  
-    marketplace: '#8B5CF6', // Purple
-    ecosystem: '#F59E0B', // Amber
-    defi: '#EF4444' // Red
+    zkvm: '#00D4FF', // Electric Blue
+    agents: '#00FF88', // Neon Green
+    marketplace: '#FF00FF', // Magenta
+    ecosystem: '#FFD700', // Gold
+    defi: '#FF4081' // Pink
   };
 
   const statusColors = {
-    completed: '#10B981',
-    'in-progress': '#F59E0B',
-    upcoming: '#6B7280'
+    completed: '#00FF88',
+    'in-progress': '#FFD700',
+    upcoming: '#8B5CF6'
   };
+
 
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault();
@@ -414,29 +474,29 @@ export default function InteractiveRoadmap() {
         </button>
       </div>
 
-      {/* Legend */}
-      <div className="absolute bottom-4 left-4 z-20 bg-gray-900/90 rounded-lg p-4 border border-gray-700">
-        <h3 className="text-sm font-semibold mb-3">Categories</h3>
+      {/* Enhanced Legend */}
+      <div className="absolute bottom-4 left-4 z-20 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-xl p-4 border border-cyan-500/30 backdrop-blur-sm">
+        <h3 className="text-sm font-bold mb-3 text-cyan-300">Categories</h3>
         <div className="space-y-2">
           {Object.entries(categoryColors).map(([category, color]) => (
-            <div key={category} className="flex items-center gap-2 text-xs">
+            <div key={category} className="flex items-center gap-3 text-xs">
               <div 
-                className="w-3 h-3 rounded-full"
-                style={{ backgroundColor: color }}
+                className="w-4 h-4 rounded-full border-2 border-white/20"
+                style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}40` }}
               />
-              <span className="capitalize">{category === 'zkvm' ? 'zkVM' : category === 'defi' ? 'DeFi' : category}</span>
+              <span className="text-gray-300 font-medium capitalize">{category === 'zkvm' ? 'zkVM' : category === 'defi' ? 'DeFi' : category}</span>
             </div>
           ))}
         </div>
-        <h3 className="text-sm font-semibold mt-4 mb-3">Status</h3>
+        <h3 className="text-sm font-bold mt-4 mb-3 text-purple-300">Status</h3>
         <div className="space-y-2">
           {Object.entries(statusColors).map(([status, color]) => (
-            <div key={status} className="flex items-center gap-2 text-xs">
+            <div key={status} className="flex items-center gap-3 text-xs">
               <div 
-                className="w-3 h-3 rounded-full"
-                style={{ backgroundColor: color }}
+                className="w-4 h-4 rounded-full border-2 border-white/20"
+                style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}40` }}
               />
-              <span className="capitalize">{status.replace('-', ' ')}</span>
+              <span className="text-gray-300 font-medium capitalize">{status.replace('-', ' ')}</span>
             </div>
           ))}
         </div>
@@ -455,18 +515,60 @@ export default function InteractiveRoadmap() {
         <svg
           ref={svgRef}
           className="w-full h-full"
-          viewBox="0 0 900 820"
+          viewBox="0 0 1000 1000"
           style={{
             transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`
           }}
         >
-          {/* Background Grid */}
+          {/* Enhanced Background with Futuristic Grid */}
           <defs>
-            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <circle cx="5" cy="5" r="0.5" fill="#1F2937" opacity="0.3"/>
+            <pattern id="futuristicGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <rect width="40" height="40" fill="none" stroke="#1E293B" strokeWidth="0.5" opacity="0.3"/>
+              <circle cx="20" cy="20" r="1" fill="#06B6D4" opacity="0.4">
+                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite"/>
+              </circle>
             </pattern>
+            
+            {/* Glowing effects */}
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/> 
+              </feMerge>
+            </filter>
+            
+            <filter id="nodeGlow">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/> 
+              </feMerge>
+            </filter>
+            
+            {/* Animated gradient for connections */}
+            <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.8">
+                <animate attributeName="stopColor" 
+                  values="#06B6D4;#8B5CF6;#10B981;#06B6D4" 
+                  dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.6">
+                <animate attributeName="stopColor" 
+                  values="#8B5CF6;#10B981;#06B6D4;#8B5CF6" 
+                  dur="4s" repeatCount="indefinite"/>
+              </stop>
+              <stop offset="100%" stopColor="#10B981" stopOpacity="0.8">
+                <animate attributeName="stopColor" 
+                  values="#10B981;#06B6D4;#8B5CF6;#10B981" 
+                  dur="4s" repeatCount="indefinite"/>
+              </stop>
+            </linearGradient>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
+          
+          {/* Background */}
+          <rect width="100%" height="100%" fill="#0A0A0A"/>
+          <rect width="100%" height="100%" fill="url(#futuristicGrid)" opacity="0.6"/>
 
           {/* Header Section - Inside SVG */}
           <foreignObject x="150" y="20" width="600" height="120">
@@ -481,10 +583,10 @@ export default function InteractiveRoadmap() {
               </div>
               <div className="border-t border-gray-600 pt-3">
                 <h2 className="text-sm font-semibold mb-2 text-center bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
-                  Vision 2026: Verifiable AI Agent Protocol
+                  Vision 2026: Three-Phase Protocol Rollout
                 </h2>
                 <p className="text-xs text-gray-300 text-center leading-relaxed">
-                  Build the leading on-chain marketplace for verifiable AI agents, where every agent's execution, strategy, and outputs are cryptographically provable, deterministic, and composable with DeFi and on-chain state.
+                  Phase 1: Core execution sandbox + constraints • Phase 2: Marketplace + economics • Phase 3: Performance + security hardening
                 </p>
               </div>
             </div>
@@ -512,27 +614,35 @@ export default function InteractiveRoadmap() {
             );
           })}
 
-          {/* Quarter Labels */}
-          {['Q1 2026', 'Q2 2026', 'Q3 2026', 'Q4 2026'].map((quarter, index) => (
-            <g key={quarter}>
+          {/* Phase Labels */}
+          {[
+            { label: 'Phase 1\nCore Protocol\n(Q1-Q2 2026)', y: 180 },
+            { label: 'Phase 2\nMarketplace\n(Q3 2026)', y: 500 },
+            { label: 'Phase 3\nScale & Security\n(Q4 2026)', y: 660 },
+            { label: 'Future\n(2027+)', y: 820 }
+          ].map((phase, index) => (
+            <g key={index}>
               <rect
                 x="20"
-                y={180 + index * 160}
-                width="80"
-                height="30"
+                y={phase.y}
+                width="90"
+                height="60"
                 fill="#1F2937"
                 stroke="#374151"
                 rx="6"
               />
-              <text
-                x="60"
-                y={198 + index * 160}
-                className="text-sm font-semibold"
-                fill="#9CA3AF"
-                textAnchor="middle"
-              >
-                {quarter}
-              </text>
+              {phase.label.split('\n').map((line, lineIndex) => (
+                <text
+                  key={lineIndex}
+                  x="65"
+                  y={phase.y + 18 + lineIndex * 12}
+                  className={lineIndex === 0 ? "text-sm font-semibold" : "text-xs"}
+                  fill="#9CA3AF"
+                  textAnchor="middle"
+                >
+                  {line}
+                </text>
+              ))}
             </g>
           ))}
 
@@ -569,69 +679,99 @@ export default function InteractiveRoadmap() {
         </svg>
       </div>
 
-      {/* Selected Item Details */}
+      {/* Enhanced Selected Item Details */}
       {selectedItem && (
-        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-gray-900/95 rounded-lg p-6 border border-gray-700 z-30">
+        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-xl z-30">
           {(() => {
             const item = roadmapData.find(i => i.id === selectedItem);
             if (!item) return null;
             
+            const categoryColor = categoryColors[item.category];
+            const statusColor = statusColors[item.status];
+            
             return (
               <>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <button
-                    onClick={() => setSelectedItem(null)}
-                    className="text-gray-400 hover:text-white text-xl"
-                  >
-                    ×
-                  </button>
-                </div>
-                <div className="flex items-center gap-3 mb-4">
-                  <span 
-                    className="px-2 py-1 rounded-full text-xs font-medium"
-                    style={{ 
-                      backgroundColor: statusColors[item.status] + '20',
-                      color: statusColors[item.status]
-                    }}
-                  >
-                    {item.status.replace('-', ' ')}
-                  </span>
-                  <span 
-                    className="px-2 py-1 rounded-full text-xs font-medium"
-                    style={{ 
-                      backgroundColor: categoryColors[item.category] + '20',
-                      color: categoryColors[item.category]
-                    }}
-                  >
-                    {item.category === 'zkvm' ? 'zkVM' : item.category === 'defi' ? 'DeFi' : item.category}
-                  </span>
-                  <span className="text-xs text-gray-400">{item.quarter}</span>
-                </div>
-                <p className="text-sm text-gray-300 leading-relaxed mb-4">{item.description}</p>
-                {item.details && (
-                  <div>
-                    <h4 className="text-sm font-medium mb-2">Key Deliverables:</h4>
-                    <ul className="text-xs text-gray-400 space-y-1">
-                      {item.details.map((detail, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="text-cyan-400 mt-1">•</span>
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-emerald-500/5 animate-pulse"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+                      {item.title}
+                    </h3>
+                    <button
+                      onClick={() => setSelectedItem(null)}
+                      className="text-gray-400 hover:text-cyan-400 text-xl transition-colors duration-200 hover:scale-110"
+                    >
+                      ×
+                    </button>
                   </div>
-                )}
+                  
+                  <div className="flex items-center gap-3 mb-4">
+                    <span 
+                      className="px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
+                      style={{ 
+                        backgroundColor: statusColor + '20',
+                        color: statusColor,
+                        borderColor: statusColor + '40'
+                      }}
+                    >
+                      {item.status.replace('-', ' ').toUpperCase()}
+                    </span>
+                    <span 
+                      className="px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
+                      style={{ 
+                        backgroundColor: categoryColor + '20',
+                        color: categoryColor,
+                        borderColor: categoryColor + '40'
+                      }}
+                    >
+                      {item.category === 'zkvm' ? 'zkVM' : item.category === 'defi' ? 'DeFi' : item.category.toUpperCase()}
+                    </span>
+                    <span className="text-xs text-cyan-300 font-medium bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/30">
+                      {item.quarter}
+                    </span>
+                  </div>
+                  
+                  <p className="text-sm text-gray-300 leading-relaxed mb-4 bg-gray-800/50 p-3 rounded-lg border border-gray-700/50">
+                    {item.description}
+                  </p>
+                  
+                  {item.details && (
+                    <div>
+                      <h4 className="text-sm font-bold mb-3 text-cyan-300">Key Deliverables:</h4>
+                      <ul className="text-xs text-gray-300 space-y-2">
+                        {item.details.map((detail, index) => (
+                          <li key={index} className="flex items-start gap-3 bg-gray-800/30 p-2 rounded border border-gray-700/30">
+                            <span className="text-cyan-400 mt-1 font-bold">→</span>
+                            <span className="leading-relaxed">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </>
             );
           })()}
         </div>
       )}
 
-      {/* Instructions */}
-      <div className="absolute bottom-4 right-4 z-20 text-xs text-gray-400 text-right">
-        <div>Scroll to zoom • Drag to pan • Click items for details</div>
-        <div>Press ESC to deselect</div>
+      {/* Enhanced Instructions */}
+      <div className="absolute bottom-4 right-4 z-20 bg-gray-900/80 rounded-lg p-3 border border-cyan-500/30 backdrop-blur-sm">
+        <div className="text-xs text-cyan-300 font-medium mb-1">Navigation</div>
+        <div className="text-xs text-gray-400 space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+            <span>Scroll to zoom • Drag to pan</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+            <span>Click nodes for details</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+            <span>Press ESC to deselect</span>
+          </div>
+        </div>
       </div>
     </div>
   );
