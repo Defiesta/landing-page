@@ -383,7 +383,7 @@ export default function InteractiveRoadmap() {
     'Q1 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
     'Q2 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
     'Q3 2026': '#FF00FF', // Phase 2 - MVP - Magenta
-    'Q4 2026': '#00FF88', // Phase 3 - Production - Green
+    'Q4 2026': '#FF6B00', // Phase 3 - Production - Orange
     '2027+': '#FFD700'     // Future - Gold
   };
 
@@ -508,7 +508,7 @@ export default function InteractiveRoadmap() {
             <span className="text-gray-300 font-medium">Phase 2: MVP Execution (Q3 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#00FF88', boxShadow: '0 0 8px #00FF8840' }} />
+            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#FF6B00', boxShadow: '0 0 8px #FF6B0040' }} />
             <span className="text-gray-300 font-medium">Phase 3: Production (Q4 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
@@ -608,8 +608,8 @@ export default function InteractiveRoadmap() {
                     <div className="text-gray-300">MVP Execution Protocol</div>
                     <div className="text-gray-400 text-xs mt-1">Q3 2026</div>
                   </div>
-                  <div className="bg-linear-to-r from-green-500/20 to-emerald-500/20 rounded-lg p-2 border border-green-500/40">
-                    <div className="font-semibold text-green-300">Phase 3</div>
+                  <div className="bg-linear-to-r from-orange-500/20 to-amber-500/20 rounded-lg p-2 border border-orange-500/40">
+                    <div className="font-semibold text-orange-300">Phase 3</div>
                     <div className="text-gray-300">Production Hardening</div>
                     <div className="text-gray-400 text-xs mt-1">Q4 2026</div>
                   </div>
@@ -662,13 +662,13 @@ export default function InteractiveRoadmap() {
               objective: 'Deploy end-to-end execution flow',
               success: '10+ production agents, <5min settlement'
             },
-            { 
-              label: 'Phase 3', 
-              subtitle: 'Production Hardening', 
-              period: 'Q4 2026', 
-              y: 760, 
-              gradient: 'from-green-500 to-emerald-600', 
-              glow: '#00FF88', 
+            {
+              label: 'Phase 3',
+              subtitle: 'Production Hardening',
+              period: 'Q4 2026',
+              y: 760,
+              gradient: 'from-orange-500 to-amber-600',
+              glow: '#FF6B00',
               objective: 'Secure and optimize for production',
               success: '$10M+ assets, 99.9% execution success'
             },
@@ -996,18 +996,18 @@ export default function InteractiveRoadmap() {
                     </div>
                   ) : item.quarter.includes('Q4') ? (
                     <div className="mb-4">
-                      <h4 className="text-sm font-bold mb-3 text-green-300">Phase 3 Success Criteria:</h4>
+                      <h4 className="text-sm font-bold mb-3 text-orange-300">Phase 3 Success Criteria:</h4>
                       <ul className="text-xs text-gray-300 space-y-1">
                         <li className="flex items-start gap-2">
-                          <span className="text-green-400 mt-1">✓</span>
+                          <span className="text-orange-400 mt-1">✓</span>
                           <span>5+ production-ready financial agents deployed</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-green-400 mt-1">✓</span>
+                          <span className="text-orange-400 mt-1">✓</span>
                           <span>Average proof generation cost &lt;$0.50 per execution</span>
                         </li>
                         <li className="flex items-start gap-2">
-                          <span className="text-green-400 mt-1">✓</span>
+                          <span className="text-orange-400 mt-1">✓</span>
                           <span>99.9% execution success rate with constraint compliance</span>
                         </li>
                       </ul>
