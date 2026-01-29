@@ -349,7 +349,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
 
   return (
     <>
-      <nav className="relative z-50 flex items-center justify-between px-8 py-6">
+      <nav className="relative z-50 flex items-center justify-between px-8 py-6 bg-transparent">
         <a href="/" className="relative">
           <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 rounded-lg"></div>
           <div className="relative px-4 py-2 bg-black rounded-lg text-xl font-semibold text-white hover:text-cyan-400 transition-colors duration-300">

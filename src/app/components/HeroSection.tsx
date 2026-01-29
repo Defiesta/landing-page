@@ -1,130 +1,342 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const MORPHING_WORDS = ['Autonomous', 'Intelligent', 'Trustless', 'Verifiable'];
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [displayText, setDisplayText] = useState('');
+  const [morphWord, setMorphWord] = useState(MORPHING_WORDS[0]);
+  const [morphIndex, setMorphIndex] = useState(0);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  const fullText = 'The Future of DeFi is';
+
+  // Typewriter effect
+  useEffect(() => {
+    let index = 0;
+    const typeInterval = setInterval(() => {
+      if (index <= fullText.length) {
+        setDisplayText(fullText.slice(0, index));
+        index++;
+      } else {
+        clearInterval(typeInterval);
+        setIsTypingComplete(true);
+      }
+    }, 50);
+
+    return () => clearInterval(typeInterval);
+  }, []);
+
+  // Word morphing effect
+  useEffect(() => {
+    if (!isTypingComplete) return;
+
+    const morphInterval = setInterval(() => {
+      setMorphIndex((prev) => (prev + 1) % MORPHING_WORDS.length);
+    }, 3000);
+
+    return () => clearInterval(morphInterval);
+  }, [isTypingComplete]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    setMorphWord(MORPHING_WORDS[morphIndex]);
+  }, [morphIndex]);
 
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <section ref={heroRef} className="min-h-[80vh] flex flex-col justify-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-linear-to-b from-cyan-500/5 via-purple-500/10 to-emerald-500/5 animate-pulse"></div>
-      
-      <div className="max-w-4xl mx-auto text-center relative z-10 px-8">
+    <section ref={heroRef} className="min-h-screen flex flex-col justify-center relative overflow-hidden">
+      {/* Animated gradient background - starts transparent to match header */}
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-purple-500/5 to-emerald-500/5"></div>
+
+      {/* Grid overlay */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: `linear-gradient(rgba(0, 212, 255, 0.3) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(0, 212, 255, 0.3) 1px, transparent 1px)`,
+        backgroundSize: '50px 50px'
+      }}></div>
+
+      {/* Floating orbs with parallax */}
+      <div
+        className="absolute top-20 left-[10%] w-64 h-64 rounded-full opacity-20 blur-3xl animate-float-slow"
+        style={{
+          background: 'radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%)',
+          transform: `translateY(${scrollY * 0.3}px)`
+        }}
+      />
+      <div
+        className="absolute top-40 right-[15%] w-96 h-96 rounded-full opacity-15 blur-3xl animate-float-medium"
+        style={{
+          background: 'radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%)',
+          transform: `translateY(${scrollY * 0.2}px)`
+        }}
+      />
+      <div
+        className="absolute bottom-32 left-[20%] w-72 h-72 rounded-full opacity-20 blur-3xl animate-float-fast"
+        style={{
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)',
+          transform: `translateY(${scrollY * 0.4}px)`
+        }}
+      />
+
+      {/* Main content */}
+      <div className="max-w-5xl mx-auto text-center relative z-10 px-8">
         <div className="space-y-8">
-          <h1 className="text-6xl md:text-8xl font-light leading-tight opacity-0 animate-fade-in-up" style={{animationDelay: '0.2s', animationFillMode: 'forwards'}}>
-            DeFi AI Agent
-            <br />
-            <span className="relative inline-block">
-              <span className="bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
-                Marketplace
+          {/* Typewriter text */}
+          <div className="h-12 flex items-center justify-center">
+            <span className="text-xl md:text-2xl text-gray-400 font-light tracking-wider animate-fade-in">
+              {displayText}
+              <span className="animate-blink">|</span>
+            </span>
+          </div>
+
+          {/* Main headline */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light leading-tight">
+            <span className="block">
+              Blockchain Verifiable
+            </span>
+            <span className="block mt-2">
+              <span className="relative inline-block">
+                <span className="bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient-shift">
+                  AI Agents
+                </span>
+                <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400"></div>
               </span>
-              <div className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 transform scale-x-0 animate-scale-x" style={{animationDelay: '1s'}}></div>
             </span>
           </h1>
-          
+
+          {/* Morphing word badge - fixed height container to prevent layout shift */}
+          <div className="h-12 flex justify-center items-center mt-6">
+            <div className="relative px-6 py-2 rounded-full border border-gray-700/50 bg-gray-900/30 backdrop-blur-sm overflow-hidden group">
+              <div className="absolute inset-0 bg-linear-to-r from-cyan-500/10 via-purple-500/10 to-emerald-500/10 animate-shimmer"></div>
+              <span className="relative text-sm text-gray-400">Powered by </span>
+              <span className="relative font-medium morph-word" key={morphWord}>
+                <span className="bg-linear-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                  {morphWord}
+                </span>
+              </span>
+              <span className="relative text-sm text-gray-400"> AI</span>
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Deploy AI agents that execute DeFi strategies with{' '}
+            <span className="text-cyan-400">zero-knowledge proofs</span>.
+            Trustless, verifiable, and autonomous financial execution on-chain.
+          </p>
+
+          {/* CTA Link */}
+          <div className="flex justify-center items-center pt-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
+            <a
+              href="/whitepaper"
+              className="group relative px-8 py-4 rounded-full font-medium transition-all duration-300 overflow-hidden"
+            >
+              {/* Button background */}
+              <div className="absolute inset-0 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 rounded-full"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+
+              {/* Button content */}
+              <span className="relative z-10 flex items-center gap-2 text-white font-semibold">
+                <span>Read Whitepaper</span>
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-1/4 left-4 md:left-8">
           <div className="relative">
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed opacity-0 animate-fade-in-up" style={{animationDelay: '0.6s', animationFillMode: 'forwards'}}>
-              Deploy AI agents that execute DeFi strategies with zero-knowledge proofs. 
-              Trustless, verifiable, and autonomous financial execution on-chain.
-            </p>
-          </div>
-
-          <div className="flex justify-center items-center opacity-0 animate-fade-in-up" style={{animationDelay: '1s', animationFillMode: 'forwards'}}>
-            <button className="group relative bg-linear-to-r from-gray-700 to-gray-800 text-gray-400 px-8 py-4 rounded-full font-medium transition-all duration-300 cursor-not-allowed">
-              <span className="relative z-10">Coming Soon</span>
-              <div className="absolute inset-0 bg-linear-to-r from-cyan-400/10 via-purple-500/10 to-emerald-400/10 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-            </button>
+            <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse-glow"></div>
+            <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-40"></div>
           </div>
         </div>
+        <div className="absolute top-1/3 right-4 md:right-12">
+          <div className="relative">
+            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse-glow" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute inset-0 w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping opacity-40" style={{ animationDelay: '0.5s' }}></div>
+          </div>
+        </div>
+        <div className="absolute bottom-1/4 left-1/4">
+          <div className="relative">
+            <div className="w-1 h-1 bg-emerald-400 rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute inset-0 w-1 h-1 bg-emerald-400 rounded-full animate-ping opacity-40" style={{ animationDelay: '1s' }}></div>
+          </div>
+        </div>
 
-        <div className="absolute top-1/4 left-8 opacity-30">
-          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+        {/* Floating tech icons */}
+        <div className="hidden md:block absolute -left-4 top-1/2 opacity-20 animate-float-slow">
+          <svg className="w-8 h-8 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
         </div>
-        <div className="absolute top-1/2 right-12 opacity-30">
-          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
-        </div>
-        <div className="absolute bottom-1/4 left-1/4 opacity-30">
-          <div className="w-1 h-1 bg-emerald-400 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+        <div className="hidden md:block absolute -right-4 top-2/3 opacity-20 animate-float-medium">
+          <svg className="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
         </div>
       </div>
 
+
+
       <style jsx>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
         @keyframes fade-in-up {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        
-        @keyframes gradient-x {
+
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes expand-line {
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
+        }
+
+        @keyframes gradient-shift {
+          0%, 100% { background-position: 0% center; }
+          50% { background-position: 100% center; }
+        }
+
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes float-medium {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(-3deg); }
+        }
+
+        @keyframes float-fast {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse-glow {
           0%, 100% {
-            background-size: 200% 200%;
-            background-position: left center;
+            opacity: 0.6;
+            box-shadow: 0 0 10px currentColor;
           }
           50% {
-            background-size: 200% 200%;
-            background-position: right center;
+            opacity: 1;
+            box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
           }
         }
-        
-        @keyframes scale-x {
-          to {
-            transform: scaleX(1);
+
+        @keyframes border-spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        @keyframes scroll-indicator {
+          0%, 100% {
+            opacity: 0;
+            transform: translateY(0);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(10px);
           }
         }
-        
-        @keyframes spin-slow {
-          to {
-            transform: rotate(360deg);
-          }
+
+        .animate-fade-in {
+          animation: fade-in 0.8s ease-out forwards;
         }
-        
-        @keyframes spin-reverse {
-          to {
-            transform: rotate(-360deg);
-          }
-        }
-        
+
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
         }
-        
-        .animate-gradient-x {
-          animation: gradient-x 3s ease infinite;
+
+        .animate-slide-up {
+          animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        
-        .animate-scale-x {
-          animation: scale-x 0.8s ease-out forwards;
+
+        .animate-expand-line {
+          animation: expand-line 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
+
+        .animate-gradient-shift {
+          animation: gradient-shift 4s ease infinite;
         }
-        
-        .animate-spin-reverse {
-          animation: spin-reverse 12s linear infinite;
+
+        .animate-shimmer {
+          animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .animate-blink {
+          animation: blink 1s step-end infinite;
+        }
+
+        .animate-float-slow {
+          animation: float-slow 8s ease-in-out infinite;
+        }
+
+        .animate-float-medium {
+          animation: float-medium 6s ease-in-out infinite;
+        }
+
+        .animate-float-fast {
+          animation: float-fast 4s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .animate-border-spin {
+          animation: border-spin 8s linear infinite;
+        }
+
+        .animate-scroll-indicator {
+          animation: scroll-indicator 2s ease-in-out infinite;
+        }
+
+        .morph-word {
+          display: inline-block;
+          animation: fade-in-up 0.5s ease-out;
         }
       `}</style>
     </section>
