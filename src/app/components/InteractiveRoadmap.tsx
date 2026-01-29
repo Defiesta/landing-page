@@ -381,18 +381,23 @@ export default function InteractiveRoadmap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
+  // Unified cyan color scheme with opacity variations for hierarchy
+  const cyanPrimary = '#22D3EE'; // cyan-400
+  const cyanLight = '#67E8F9';   // cyan-300
+  const cyanDark = '#06B6D4';    // cyan-500
+
   const phaseColors: Record<string, string> = {
-    'Q1 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
-    'Q2 2026': '#00D4FF', // Phase 1 - Core Protocol - Cyan
-    'Q3 2026': '#FF00FF', // Phase 2 - MVP - Magenta
-    'Q4 2026': '#FF6B00', // Phase 3 - Production - Orange
-    '2027+': '#FFD700'     // Future - Gold
+    'Q1 2026': cyanPrimary,
+    'Q2 2026': cyanPrimary,
+    'Q3 2026': cyanLight,
+    'Q4 2026': cyanDark,
+    '2027+': '#0891B2'  // cyan-600
   };
 
   const statusColors = {
-    completed: '#00FF88',
-    'in-progress': '#FFD700',
-    upcoming: '#6B7280'
+    completed: cyanLight,
+    'in-progress': cyanPrimary,
+    upcoming: '#164E63'  // cyan-900
   };
 
 
@@ -465,32 +470,48 @@ export default function InteractiveRoadmap() {
       className={`relative ${isFullscreen ? 'fixed inset-0 z-50 bg-black' : 'w-full h-full'} overflow-hidden`}
     >
 
+      {/* Home Button */}
+      <a
+        href="/"
+        className="absolute top-4 left-4 z-20 flex items-center gap-2 px-4 py-2 bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm group"
+      >
+        <svg
+          className="w-4 h-4 transition-transform group-hover:-translate-x-0.5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span className="text-sm font-medium">Home</span>
+      </a>
+
       {/* Controls */}
-      <div className="absolute top-4 right-4 z-20 flex gap-2">
+      <div className="absolute top-4 right-4 z-20 flex gap-1.5">
         <button
           onClick={zoomOut}
-          className="p-2 bg-gray-800/90 hover:bg-gray-700 rounded-lg border border-gray-600 text-white transition-colors"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
           title="Zoom Out"
         >
           −
         </button>
         <button
           onClick={zoomIn}
-          className="p-2 bg-gray-800/90 hover:bg-gray-700 rounded-lg border border-gray-600 text-white transition-colors"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
           title="Zoom In"
         >
           +
         </button>
         <button
           onClick={resetView}
-          className="p-2 bg-gray-800/90 hover:bg-gray-700 rounded-lg border border-gray-600 text-white transition-colors"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
           title="Reset View"
         >
           ⌂
         </button>
         <button
           onClick={toggleFullscreen}
-          className="p-2 bg-gray-800/90 hover:bg-gray-700 rounded-lg border border-gray-600 text-white transition-colors"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
           title="Fullscreen"
         >
           ⛶
@@ -498,24 +519,41 @@ export default function InteractiveRoadmap() {
       </div>
 
       {/* Phase Color Legend */}
-      <div className="absolute bottom-4 left-4 z-20 bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-xl p-4 border border-cyan-500/30 backdrop-blur-sm">
-        <h3 className="text-sm font-bold mb-3 text-cyan-300">Development Phases</h3>
-        <div className="space-y-2">
+      <div className="absolute bottom-4 left-4 z-20 bg-gray-950/90 rounded-xl p-4 border border-cyan-400/20 backdrop-blur-md shadow-lg shadow-cyan-500/10">
+        <h3 className="text-sm font-bold mb-3 text-cyan-400 tracking-wide">Development Phases</h3>
+        <div className="space-y-2.5">
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#00D4FF', boxShadow: '0 0 8px #00D4FF40' }} />
+            <div className="w-3 h-3 rounded-full border border-cyan-300/50" style={{ backgroundColor: '#22D3EE', boxShadow: '0 0 12px #22D3EE60' }} />
             <span className="text-gray-300 font-medium">Phase 1: Core Protocol (Q1-Q2 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#FF00FF', boxShadow: '0 0 8px #FF00FF40' }} />
+            <div className="w-3 h-3 rounded-full border border-cyan-400/50" style={{ backgroundColor: '#06B6D4', boxShadow: '0 0 10px #06B6D450' }} />
             <span className="text-gray-300 font-medium">Phase 2: MVP Execution (Q3 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#FF6B00', boxShadow: '0 0 8px #FF6B0040' }} />
+            <div className="w-3 h-3 rounded-full border border-cyan-500/50" style={{ backgroundColor: '#0891B2', boxShadow: '0 0 8px #0891B240' }} />
             <span className="text-gray-300 font-medium">Phase 3: Production (Q4 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-4 h-4 rounded-full border-2 border-white/20" style={{ backgroundColor: '#FFD700', boxShadow: '0 0 8px #FFD70040' }} />
-            <span className="text-gray-300 font-medium">Future: Advanced (2027+)</span>
+            <div className="w-3 h-3 rounded-full border border-cyan-600/50" style={{ backgroundColor: '#155E75', boxShadow: '0 0 6px #155E7530' }} />
+            <span className="text-gray-400 font-medium">Future: Advanced (2027+)</span>
+          </div>
+        </div>
+        <div className="mt-4 pt-3 border-t border-cyan-400/10">
+          <h4 className="text-xs font-semibold mb-2 text-cyan-400/80">Status</h4>
+          <div className="flex gap-4 text-xs">
+            <div className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full bg-cyan-300 shadow-sm shadow-cyan-300/50" />
+              <span className="text-gray-400">Done</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="text-gray-400">Active</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full bg-cyan-900" />
+              <span className="text-gray-400">Next</span>
+            </div>
           </div>
         </div>
       </div>
@@ -564,22 +602,22 @@ export default function InteractiveRoadmap() {
               </feMerge>
             </filter>
             
-            {/* Animated gradient for connections */}
+            {/* Animated gradient for connections - cyan only */}
             <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.8">
-                <animate attributeName="stopColor" 
-                  values="#06B6D4;#8B5CF6;#10B981;#06B6D4" 
-                  dur="4s" repeatCount="indefinite"/>
+              <stop offset="0%" stopColor="#22D3EE" stopOpacity="0.9">
+                <animate attributeName="stopOpacity"
+                  values="0.9;0.4;0.9"
+                  dur="3s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.6">
-                <animate attributeName="stopColor" 
-                  values="#8B5CF6;#10B981;#06B6D4;#8B5CF6" 
-                  dur="4s" repeatCount="indefinite"/>
+              <stop offset="50%" stopColor="#06B6D4" stopOpacity="0.6">
+                <animate attributeName="stopOpacity"
+                  values="0.6;1;0.6"
+                  dur="3s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#10B981" stopOpacity="0.8">
-                <animate attributeName="stopColor" 
-                  values="#10B981;#06B6D4;#8B5CF6;#10B981" 
-                  dur="4s" repeatCount="indefinite"/>
+              <stop offset="100%" stopColor="#0891B2" stopOpacity="0.9">
+                <animate attributeName="stopOpacity"
+                  values="0.9;0.4;0.9"
+                  dur="3s" repeatCount="indefinite"/>
               </stop>
             </linearGradient>
           </defs>
@@ -589,31 +627,40 @@ export default function InteractiveRoadmap() {
           <rect width="100%" height="100%" fill="url(#futuristicGrid)" opacity="0.6"/>
 
           {/* Technical Header Section */}
-          <foreignObject x="200" y="25" width="600" height="200">
-            <div className="relative bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-sm">
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-cyan-500/10 via-purple-500/10 to-emerald-500/10 animate-pulse"></div>
+          <foreignObject x="200" y="25" width="600" height="220">
+            <div className="relative bg-gray-950/95 rounded-2xl p-6 border border-cyan-400/30 backdrop-blur-md overflow-hidden">
+              {/* Animated glow effect */}
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-cyan-500/5 via-cyan-400/10 to-cyan-500/5">
+                <div className="absolute inset-0 bg-linear-to-b from-cyan-400/5 to-transparent animate-pulse"></div>
+              </div>
+              {/* Decorative corner accents */}
+              <div className="absolute top-0 left-0 w-16 h-px bg-linear-to-r from-cyan-400 to-transparent"></div>
+              <div className="absolute top-0 left-0 w-px h-16 bg-linear-to-b from-cyan-400 to-transparent"></div>
+              <div className="absolute bottom-0 right-0 w-16 h-px bg-linear-to-l from-cyan-400 to-transparent"></div>
+              <div className="absolute bottom-0 right-0 w-px h-16 bg-linear-to-t from-cyan-400 to-transparent"></div>
+
               <div className="relative z-10 text-center">
-                <h1 className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-purple-400 to-emerald-400">
+                <h1 className="text-3xl font-bold mb-2 text-cyan-400 tracking-tight">
                   Protocol Development Roadmap
                 </h1>
-                <div className="text-sm text-cyan-300 mb-4 font-medium">
+                <div className="text-sm text-cyan-300/80 mb-5 font-medium tracking-wide">
                   Verifiable Execution Kernel for Bounded Financial Agents
                 </div>
-                <div className="grid grid-cols-3 gap-4 text-xs">
-                  <div className="bg-linear-to-r from-cyan-500/20 to-blue-500/20 rounded-lg p-2 border border-cyan-500/40">
-                    <div className="font-semibold text-cyan-300">Phase 1</div>
-                    <div className="text-gray-300">Core Protocol Infrastructure</div>
-                    <div className="text-gray-400 text-xs mt-1">Q1-Q2 2026</div>
+                <div className="grid grid-cols-3 gap-3 text-xs">
+                  <div className="bg-cyan-400/10 rounded-lg p-3 border border-cyan-400/30 hover:border-cyan-400/50 transition-colors">
+                    <div className="font-bold text-cyan-300 mb-1">Phase 1</div>
+                    <div className="text-gray-300 text-xs">Core Protocol</div>
+                    <div className="text-cyan-400/60 text-xs mt-1 font-mono">Q1-Q2 2026</div>
                   </div>
-                  <div className="bg-linear-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-2 border border-purple-500/40">
-                    <div className="font-semibold text-purple-300">Phase 2</div>
-                    <div className="text-gray-300">MVP Execution Protocol</div>
-                    <div className="text-gray-400 text-xs mt-1">Q3 2026</div>
+                  <div className="bg-cyan-500/10 rounded-lg p-3 border border-cyan-500/30 hover:border-cyan-500/50 transition-colors">
+                    <div className="font-bold text-cyan-400 mb-1">Phase 2</div>
+                    <div className="text-gray-300 text-xs">MVP Execution</div>
+                    <div className="text-cyan-400/60 text-xs mt-1 font-mono">Q3 2026</div>
                   </div>
-                  <div className="bg-linear-to-r from-orange-500/20 to-amber-500/20 rounded-lg p-2 border border-orange-500/40">
-                    <div className="font-semibold text-orange-300">Phase 3</div>
-                    <div className="text-gray-300">Production Hardening</div>
-                    <div className="text-gray-400 text-xs mt-1">Q4 2026</div>
+                  <div className="bg-cyan-600/10 rounded-lg p-3 border border-cyan-600/30 hover:border-cyan-600/50 transition-colors">
+                    <div className="font-bold text-cyan-500 mb-1">Phase 3</div>
+                    <div className="text-gray-300 text-xs">Production</div>
+                    <div className="text-cyan-400/60 text-xs mt-1 font-mono">Q4 2026</div>
                   </div>
                 </div>
               </div>
@@ -624,9 +671,9 @@ export default function InteractiveRoadmap() {
           {connections.map((connection, index) => {
             const fromItem = roadmapData.find(item => item.id === connection.from);
             const toItem = roadmapData.find(item => item.id === connection.to);
-            
+
             if (!fromItem || !toItem) return null;
-            
+
             return (
               <line
                 key={index}
@@ -642,47 +689,79 @@ export default function InteractiveRoadmap() {
             );
           })}
 
-          {/* Technical Phase Indicators */}
+          {/* Phase Separator Lines */}
           {[
-            { 
-              label: 'Phase 1', 
-              subtitle: 'Core Protocol Infrastructure', 
-              period: 'Q1-Q2 2026', 
-              y: 280, 
-              gradient: 'from-cyan-500 to-blue-600', 
-              glow: '#00D4FF', 
-              objective: 'Establish foundational execution primitives',
-              success: '<10ms latency overhead, 300k gas verification'
+            { y: 560, label: 'Phase 2' },
+            { y: 720, label: 'Phase 3' },
+            { y: 880, label: 'Future' }
+          ].map((separator, index) => (
+            <g key={`separator-${index}`}>
+              {/* Main horizontal line */}
+              <line
+                x1="170"
+                y1={separator.y}
+                x2="920"
+                y2={separator.y}
+                stroke="#22D3EE"
+                strokeWidth="1"
+                opacity="0.15"
+              />
+              {/* Gradient fade on left */}
+              <line
+                x1="170"
+                y1={separator.y}
+                x2="300"
+                y2={separator.y}
+                stroke="url(#connectionGradient)"
+                strokeWidth="2"
+                opacity="0.4"
+              />
+              {/* Gradient fade on right */}
+              <line
+                x1="800"
+                y1={separator.y}
+                x2="920"
+                y2={separator.y}
+                stroke="url(#connectionGradient)"
+                strokeWidth="2"
+                opacity="0.4"
+              />
+            </g>
+          ))}
+
+          {/* Technical Phase Indicators - Unified Cyan */}
+          {[
+            {
+              label: 'Phase 1',
+              subtitle: 'Core Protocol',
+              period: 'Q1-Q2 2026',
+              y: 280,
+              opacity: 1,
+              glow: '#22D3EE'
             },
-            { 
-              label: 'Phase 2', 
-              subtitle: 'MVP Execution Protocol', 
-              period: 'Q3 2026', 
-              y: 600, 
-              gradient: 'from-purple-500 to-pink-600', 
-              glow: '#FF00FF', 
-              objective: 'Deploy end-to-end execution flow',
-              success: '10+ production agents, <5min settlement'
+            {
+              label: 'Phase 2',
+              subtitle: 'MVP Execution',
+              period: 'Q3 2026',
+              y: 600,
+              opacity: 0.85,
+              glow: '#06B6D4'
             },
             {
               label: 'Phase 3',
-              subtitle: 'Production Hardening',
+              subtitle: 'Production',
               period: 'Q4 2026',
               y: 760,
-              gradient: 'from-orange-500 to-amber-600',
-              glow: '#FF6B00',
-              objective: 'Secure and optimize for production',
-              success: '$10M+ assets, 99.9% execution success'
+              opacity: 0.7,
+              glow: '#0891B2'
             },
-            { 
-              label: 'Future', 
-              subtitle: 'Advanced Patterns', 
-              period: '2027+', 
-              y: 920, 
-              gradient: 'from-orange-500 to-red-600', 
-              glow: '#FFD700', 
-              objective: 'Network decentralization and ecosystem expansion',
-              success: 'Multi-executor networks, governance'
+            {
+              label: 'Future',
+              subtitle: 'Advanced',
+              period: '2027+',
+              y: 920,
+              opacity: 0.55,
+              glow: '#155E75'
             }
           ].map((phase, index) => (
             <g key={index}>
@@ -691,34 +770,39 @@ export default function InteractiveRoadmap() {
                 x="20"
                 y={phase.y - 10}
                 width="140"
-                height="90"
+                height="70"
                 fill={phase.glow}
-                opacity="0.1"
+                opacity={0.15 * phase.opacity}
                 rx="12"
                 filter="url(#glow)"
               />
-              
+
               {/* Main phase container */}
-              <foreignObject x="25" y={phase.y - 5} width="130" height="80">
-                <div className={`h-full bg-linear-to-br ${phase.gradient} p-2 rounded-xl border border-white/20 backdrop-blur-sm`}>
-                  <div className="text-xs font-bold text-white">{phase.label}</div>
-                  <div className="text-xs text-white/90 font-medium mt-1 leading-tight">{phase.subtitle}</div>
-                  <div className="text-xs text-white/70 mt-1">{phase.period}</div>
-                  <div className="text-xs text-white/60 mt-1 leading-tight">{phase.success}</div>
+              <foreignObject x="25" y={phase.y - 5} width="130" height="65">
+                <div
+                  className="h-full p-3 rounded-xl border backdrop-blur-sm flex flex-col justify-center"
+                  style={{
+                    background: `linear-gradient(135deg, rgba(34,211,238,${0.2 * phase.opacity}) 0%, rgba(6,182,212,${0.1 * phase.opacity}) 100%)`,
+                    borderColor: `rgba(34,211,238,${0.4 * phase.opacity})`
+                  }}
+                >
+                  <div className="text-xs font-bold text-cyan-300" style={{ opacity: phase.opacity }}>{phase.label}</div>
+                  <div className="text-xs text-cyan-100 font-medium mt-1 leading-tight" style={{ opacity: phase.opacity * 0.9 }}>{phase.subtitle}</div>
+                  <div className="text-xs text-cyan-200/70 mt-1 font-mono" style={{ opacity: phase.opacity * 0.8 }}>{phase.period}</div>
                 </div>
               </foreignObject>
-              
+
               {/* Animated side indicator */}
               <rect
-                x="15"
-                y={phase.y + 20}
-                width="4"
+                x="10"
+                y={phase.y + 13}
+                width="3"
                 height="30"
                 fill={phase.glow}
-                rx="2"
-                opacity="0.8"
+                rx="1.5"
+                opacity={0.8 * phase.opacity}
               >
-                <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin={`${index * 0.5}s`}/>
+                <animate attributeName="opacity" values={`${0.4 * phase.opacity};${1 * phase.opacity};${0.4 * phase.opacity}`} dur="2s" repeatCount="indefinite" begin={`${index * 0.5}s`}/>
               </rect>
             </g>
           ))}
@@ -730,7 +814,7 @@ export default function InteractiveRoadmap() {
             const phaseColor = phaseColors[item.quarter];
             const statusColor = statusColors[item.status];
             const isCompleted = item.status === 'completed';
-            const nodeColor = isCompleted ? '#00FF88' : phaseColor;
+            const nodeColor = isCompleted ? cyanLight : phaseColor;
 
             return (
               <g key={item.id}>
@@ -767,7 +851,7 @@ export default function InteractiveRoadmap() {
                   cy={item.y}
                   r={nodeSize}
                   fill={nodeColor}
-                  stroke={isCompleted ? '#00FF88' : phaseColor}
+                  stroke={isCompleted ? cyanLight : phaseColor}
                   strokeWidth={isCompleted ? "4" : "3"}
                   className="milestone-node cursor-pointer transition-all duration-300"
                   onClick={(e) => {
@@ -795,7 +879,7 @@ export default function InteractiveRoadmap() {
                       cx={item.x}
                       cy={item.y}
                       r={nodeSize - 10}
-                      fill="rgba(0, 255, 136, 0.3)"
+                      fill="rgba(103, 232, 249, 0.3)"
                     />
                     <path
                       d={`M ${item.x - 8} ${item.y} L ${item.x - 2} ${item.y + 6} L ${item.x + 10} ${item.y - 6}`}
@@ -879,59 +963,66 @@ export default function InteractiveRoadmap() {
 
       {/* Enhanced Selected Item Details */}
       {selectedItem && (
-        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 rounded-2xl p-6 border border-cyan-500/30 backdrop-blur-xl z-30">
+        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-gray-950/95 rounded-2xl p-6 border border-cyan-400/30 backdrop-blur-xl z-30 shadow-xl shadow-cyan-500/10">
           {(() => {
             const item = roadmapData.find(i => i.id === selectedItem);
             if (!item) return null;
-            
+
             const phaseColor = phaseColors[item.quarter];
             const statusColor = statusColors[item.status];
-            
+
             return (
               <>
-                <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-cyan-500/5 via-purple-500/5 to-emerald-500/5 animate-pulse"></div>
+                {/* Subtle animated glow */}
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-cyan-500/5 via-transparent to-cyan-400/5 animate-pulse"></div>
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-12 h-px bg-linear-to-r from-cyan-400 to-transparent"></div>
+                <div className="absolute top-0 left-0 w-px h-12 bg-linear-to-b from-cyan-400 to-transparent"></div>
+                <div className="absolute bottom-0 right-0 w-12 h-px bg-linear-to-l from-cyan-400 to-transparent"></div>
+                <div className="absolute bottom-0 right-0 w-px h-12 bg-linear-to-t from-cyan-400 to-transparent"></div>
+
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-purple-400">
+                    <h3 className="text-lg font-bold text-cyan-400 tracking-tight">
                       {item.title}
                     </h3>
                     <button
                       onClick={() => setSelectedItem(null)}
-                      className="text-gray-400 hover:text-cyan-400 text-xl transition-colors duration-200 hover:scale-110"
+                      className="text-gray-500 hover:text-cyan-400 text-xl transition-colors duration-200 hover:scale-110 w-8 h-8 flex items-center justify-center rounded-full hover:bg-cyan-400/10"
                     >
                       ×
                     </button>
                   </div>
-                  
-                  <div className="flex items-center gap-3 mb-4">
-                    <span 
+
+                  <div className="flex items-center gap-2 mb-4 flex-wrap">
+                    <span
                       className="px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
-                      style={{ 
-                        backgroundColor: statusColor + '20',
+                      style={{
+                        backgroundColor: statusColor + '15',
                         color: statusColor,
-                        borderColor: statusColor + '40'
+                        borderColor: statusColor + '30'
                       }}
                     >
                       {item.status.replace('-', ' ').toUpperCase()}
                     </span>
-                    <span 
+                    <span
                       className="px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-sm"
-                      style={{ 
-                        backgroundColor: phaseColor + '20',
+                      style={{
+                        backgroundColor: phaseColor + '15',
                         color: phaseColor,
-                        borderColor: phaseColor + '40'
+                        borderColor: phaseColor + '30'
                       }}
                     >
                       {item.quarter.includes('Q1') || item.quarter.includes('Q2') ? 'PHASE 1' :
                        item.quarter.includes('Q3') ? 'PHASE 2' :
                        item.quarter.includes('Q4') ? 'PHASE 3' : 'FUTURE'}
                     </span>
-                    <span className="text-xs text-cyan-300 font-medium bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/30">
+                    <span className="text-xs text-cyan-400/70 font-mono bg-cyan-400/5 px-2 py-1 rounded border border-cyan-400/20">
                       {item.quarter}
                     </span>
                   </div>
-                  
-                  <p className="text-sm text-gray-300 leading-relaxed mb-4 bg-gray-800/50 p-3 rounded-lg border border-gray-700/50">
+
+                  <p className="text-sm text-gray-300 leading-relaxed mb-4 bg-gray-900/50 p-3 rounded-lg border border-cyan-400/10">
                     {item.description}
                   </p>
 
@@ -941,99 +1032,97 @@ export default function InteractiveRoadmap() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 rounded-lg border border-emerald-500/40 transition-colors text-sm font-medium"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-400/10 hover:bg-cyan-400/20 text-cyan-300 rounded-lg border border-cyan-400/30 hover:border-cyan-400/50 transition-all text-sm font-medium"
                       >
                         <span>View Repository</span>
-                        <span>→</span>
+                        <span className="text-cyan-400">→</span>
                       </a>
                     </div>
                   )}
 
                   {item.details && (
                     <div className="mb-4">
-                      <h4 className="text-sm font-bold mb-3 text-cyan-300">Technical Deliverables:</h4>
+                      <h4 className="text-sm font-bold mb-3 text-cyan-400">Technical Deliverables</h4>
                       <ul className="text-xs text-gray-300 space-y-2">
                         {item.details.map((detail, index) => (
-                          <li key={index} className="flex items-start gap-3 bg-gray-800/30 p-2 rounded border border-gray-700/30">
-                            <span className="text-cyan-400 mt-1 font-bold">→</span>
+                          <li key={index} className="flex items-start gap-3 bg-cyan-400/5 p-2 rounded border border-cyan-400/10">
+                            <span className="text-cyan-400 mt-0.5">›</span>
                             <span className="leading-relaxed">{detail}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
-                  
-                  {/* Success Criteria based on phase */}
-                  {item.quarter.includes('Q1') || item.quarter.includes('Q2') ? (
+
+                  {/* Success Criteria - unified cyan styling */}
+                  {(item.quarter.includes('Q1') || item.quarter.includes('Q2') || item.quarter.includes('Q3') || item.quarter.includes('Q4')) && (
                     <div className="mb-4">
-                      <h4 className="text-sm font-bold mb-3 text-emerald-300">Phase 1 Success Criteria:</h4>
-                      <ul className="text-xs text-gray-300 space-y-1">
-                        <li className="flex items-start gap-2">
-                          <span className="text-emerald-400 mt-1">✓</span>
-                          <span>Agent programs execute deterministically with &lt;10ms latency overhead</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-emerald-400 mt-1">✓</span>
-                          <span>All constraint violations result in proof generation failure</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-emerald-400 mt-1">✓</span>
-                          <span>Execution receipts verify on-chain within 300k gas budget</span>
-                        </li>
+                      <h4 className="text-sm font-bold mb-3 text-cyan-300">Success Criteria</h4>
+                      <ul className="text-xs text-gray-300 space-y-1.5">
+                        {item.quarter.includes('Q1') || item.quarter.includes('Q2') ? (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>Agent programs execute deterministically with &lt;10ms latency overhead</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>All constraint violations result in proof generation failure</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>Execution receipts verify on-chain within 300k gas budget</span>
+                            </li>
+                          </>
+                        ) : item.quarter.includes('Q3') ? (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>&lt;5 minute end-to-end execution latency</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>Zero custody errors across 100+ execution cycles</span>
+                            </li>
+                          </>
+                        ) : item.quarter.includes('Q4') ? (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>5+ production-ready financial agents deployed</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>Average proof generation cost &lt;$0.50 per execution</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>99.9% execution success rate with constraint compliance</span>
+                            </li>
+                          </>
+                        ) : null}
                       </ul>
                     </div>
-                  ) : item.quarter.includes('Q3') ? (
-                    <div className="mb-4">
-                      <h4 className="text-sm font-bold mb-3 text-purple-300">Phase 2 Success Criteria:</h4>
-                      <ul className="text-xs text-gray-300 space-y-1">
-                        <li className="flex items-start gap-2">
-                          <span className="text-purple-400 mt-1">✓</span>
-                          <span>&lt;5 minute end-to-end execution latency</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-purple-400 mt-1">✓</span>
-                          <span>Zero custody errors across 100+ execution cycles</span>
-                        </li>
-                      </ul>
-                    </div>
-                  ) : item.quarter.includes('Q4') ? (
-                    <div className="mb-4">
-                      <h4 className="text-sm font-bold mb-3 text-orange-300">Phase 3 Success Criteria:</h4>
-                      <ul className="text-xs text-gray-300 space-y-1">
-                        <li className="flex items-start gap-2">
-                          <span className="text-orange-400 mt-1">✓</span>
-                          <span>5+ production-ready financial agents deployed</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-orange-400 mt-1">✓</span>
-                          <span>Average proof generation cost &lt;$0.50 per execution</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <span className="text-orange-400 mt-1">✓</span>
-                          <span>99.9% execution success rate with constraint compliance</span>
-                        </li>
-                      </ul>
-                    </div>
-                  ) : null}
-                  
+                  )}
+
                   {/* Protocol Invariants */}
-                  <div className="bg-linear-to-r from-orange-500/10 to-red-500/10 p-3 rounded-lg border border-orange-500/30">
-                    <h4 className="text-sm font-bold mb-2 text-orange-300">Protocol Invariants:</h4>
-                    <ul className="text-xs text-gray-300 space-y-1">
+                  <div className="bg-cyan-400/5 p-3 rounded-lg border border-cyan-400/20">
+                    <h4 className="text-sm font-bold mb-2 text-cyan-400">Protocol Invariants</h4>
+                    <ul className="text-xs text-gray-400 space-y-1.5">
                       <li className="flex items-start gap-2">
-                        <span className="text-orange-400 mt-1">⚡</span>
+                        <span className="text-cyan-500">›</span>
                         <span>Execution Determinism: Identical inputs → identical outputs</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-orange-400 mt-1">🔒</span>
+                        <span className="text-cyan-500">›</span>
                         <span>Capital Safety: User funds remain in controlled vaults</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-orange-400 mt-1">📋</span>
+                        <span className="text-cyan-500">›</span>
                         <span>Constraint Enforcement: All actions respect declared bounds</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-orange-400 mt-1">🔍</span>
+                        <span className="text-cyan-500">›</span>
                         <span>Proof Completeness: Every state change is cryptographically backed</span>
                       </li>
                     </ul>
@@ -1046,19 +1135,19 @@ export default function InteractiveRoadmap() {
       )}
 
       {/* Enhanced Instructions */}
-      <div className="absolute bottom-4 right-4 z-20 bg-gray-900/80 rounded-lg p-3 border border-cyan-500/30 backdrop-blur-sm">
-        <div className="text-xs text-cyan-300 font-medium mb-1">Navigation</div>
-        <div className="text-xs text-gray-400 space-y-1">
+      <div className="absolute bottom-4 right-4 z-20 bg-gray-950/90 rounded-lg p-3 border border-cyan-400/20 backdrop-blur-md shadow-lg shadow-cyan-500/5">
+        <div className="text-xs text-cyan-400 font-semibold mb-2 tracking-wide">Navigation</div>
+        <div className="text-xs text-gray-400 space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-sm shadow-cyan-400/50"></span>
             <span>Scroll to zoom • Drag to pan</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+            <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full shadow-sm shadow-cyan-500/50"></span>
             <span>Click nodes for details</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+            <span className="w-1.5 h-1.5 bg-cyan-600 rounded-full shadow-sm shadow-cyan-600/50"></span>
             <span>Press ESC to deselect</span>
           </div>
         </div>
