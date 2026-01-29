@@ -15,8 +15,6 @@ interface Particle {
 
 const COLORS = {
   cyan: { r: 0, g: 212, b: 255 },
-  purple: { r: 168, g: 85, b: 247 },
-  emerald: { r: 16, g: 185, b: 129 },
 };
 
 const COLOR_KEYS = Object.keys(COLORS) as (keyof typeof COLORS)[];
@@ -176,7 +174,7 @@ export default function AnimatedBackground({ hidden = false }: { hidden?: boolea
 
       const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 200);
       gradient.addColorStop(0, 'rgba(0, 212, 255, 0.08)');
-      gradient.addColorStop(0.5, 'rgba(168, 85, 247, 0.04)');
+      gradient.addColorStop(0.5, 'rgba(0, 212, 255, 0.04)');
       gradient.addColorStop(1, 'transparent');
 
       ctx.fillStyle = gradient;
@@ -211,10 +209,10 @@ export default function AnimatedBackground({ hidden = false }: { hidden?: boolea
       ctx.closePath();
       ctx.fill();
 
-      // Purple aurora wave
+      // Second cyan aurora wave
       const gradient2 = ctx.createLinearGradient(0, auroraY - 80, 0, auroraY + 120);
       gradient2.addColorStop(0, 'transparent');
-      gradient2.addColorStop(0.5, 'rgba(168, 85, 247, 0.025)');
+      gradient2.addColorStop(0.5, 'rgba(0, 212, 255, 0.025)');
       gradient2.addColorStop(1, 'transparent');
 
       ctx.fillStyle = gradient2;

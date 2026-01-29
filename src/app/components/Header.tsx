@@ -448,8 +448,8 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
             </div>
           </div>
 
+          <a href="https://www.docs.defiesta.xyz/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all">DOCS</a>
           <a href="/roadmap" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all">ROADMAP</a>
-          <a href="https://medium.com/@mehd1b" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all">BLOG</a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -557,17 +557,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
                 </div>
 
                 <a
-                  href="/roadmap"
-                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    onMenuToggle?.(false);
-                  }}
-                >
-                  ROADMAP
-                </a>
-                <a
-                  href="https://medium.com/@mehd1b"
+                  href="https://www.docs.defiesta.xyz/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300"
@@ -576,7 +566,17 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
                     onMenuToggle?.(false);
                   }}
                 >
-                  BLOG
+                  DOCS
+                </a>
+                <a
+                  href="/roadmap"
+                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    onMenuToggle?.(false);
+                  }}
+                >
+                  ROADMAP
                 </a>
               </div>
             </div>

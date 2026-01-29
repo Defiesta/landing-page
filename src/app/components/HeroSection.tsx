@@ -66,29 +66,6 @@ export default function HeroSection() {
         backgroundSize: '50px 50px'
       }}></div>
 
-      {/* Floating orbs with parallax */}
-      <div
-        className="absolute top-20 left-[10%] w-64 h-64 rounded-full opacity-20 blur-3xl animate-float-slow"
-        style={{
-          background: 'radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%)',
-          transform: `translateY(${scrollY * 0.3}px)`
-        }}
-      />
-      <div
-        className="absolute top-40 right-[15%] w-96 h-96 rounded-full opacity-15 blur-3xl animate-float-medium"
-        style={{
-          background: 'radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%)',
-          transform: `translateY(${scrollY * 0.2}px)`
-        }}
-      />
-      <div
-        className="absolute bottom-32 left-[20%] w-72 h-72 rounded-full opacity-20 blur-3xl animate-float-fast"
-        style={{
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)',
-          transform: `translateY(${scrollY * 0.4}px)`
-        }}
-      />
-
       {/* Main content */}
       <div className="max-w-5xl mx-auto text-center relative z-10 px-8">
         <div className="space-y-8">
@@ -164,12 +141,6 @@ export default function HeroSection() {
             <div className="absolute inset-0 w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-40"></div>
           </div>
         </div>
-        <div className="absolute top-1/3 right-4 md:right-12">
-          <div className="relative">
-            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse-glow" style={{ animationDelay: '0.5s' }}></div>
-            <div className="absolute inset-0 w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping opacity-40" style={{ animationDelay: '0.5s' }}></div>
-          </div>
-        </div>
         <div className="absolute bottom-1/4 left-1/4">
           <div className="relative">
             <div className="w-1 h-1 bg-emerald-400 rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
@@ -177,17 +148,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Floating tech icons */}
-        <div className="hidden md:block absolute -left-4 top-1/2 opacity-20 animate-float-slow">
-          <svg className="w-8 h-8 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-        </div>
-        <div className="hidden md:block absolute -right-4 top-2/3 opacity-20 animate-float-medium">
-          <svg className="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>
-        </div>
       </div>
 
 
