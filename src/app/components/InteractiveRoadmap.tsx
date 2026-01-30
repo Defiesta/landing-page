@@ -36,7 +36,8 @@ const roadmapData: RoadmapItem[] = [
       'RISC Zero zkVM implementation',
       'Constraint engine for agent execution',
       'Deterministic execution boundaries',
-      'Proof pipeline to Ethereum'
+      'Proof pipeline to Ethereum',
+      'Operating Envelope: 1-10M params, sub-10s proving, 10-20M cycles'
     ],
     link: 'https://github.com/Defiesta/execution-kernel'
   },
@@ -70,7 +71,8 @@ const roadmapData: RoadmapItem[] = [
       'Input commitment design',
       'Journal shaping & canonicalization',
       'Replay protection mechanisms',
-      'Deterministic execution guarantees'
+      'Deterministic Runtime Profile: no time, no network, no parallel reductions',
+      'Deterministic math primitives (canonical f32 / fixed-point)'
     ],
     link: 'https://github.com/Defiesta/execution-kernel'
   },
@@ -104,7 +106,9 @@ const roadmapData: RoadmapItem[] = [
       'Vault interface standard',
       'Proof submission interface',
       'Agent registry specification',
-      'Replay/multinonce scheme'
+      'Replay/multinonce scheme',
+      'Freshness bounds for state-sensitive actions',
+      'State-binding constraints (price deviation, block bounds)'
     ]
   },
   {
@@ -159,8 +163,8 @@ const roadmapData: RoadmapItem[] = [
   // Phase 2 - Marketplace & Economics (Q3 2026)
   {
     id: 'agent-marketplace-v1',
-    title: 'Agent Marketplace v1',
-    description: 'Listing/registry UI with agent discovery and versioning',
+    title: 'Verifiable ML Marketplace v1',
+    description: 'Verifiable ML agent marketplace optimized for risk management, rebalancing, and policy-based execution',
     status: 'upcoming',
     quarter: 'Q3 2026',
     x: 240,
@@ -170,7 +174,9 @@ const roadmapData: RoadmapItem[] = [
       'Agent listing and discovery UI',
       'Versioning and metadata',
       'Agent performance metrics',
-      'Search and filtering'
+      'Search and filtering',
+      'Best-fit use case documentation (risk, rebalancing, governance)',
+      'Operating envelope visibility per agent'
     ]
   },
   {
@@ -294,7 +300,7 @@ const roadmapData: RoadmapItem[] = [
     description: 'Long-lived stateful agents with persistent state (Post-MVP)',
     status: 'upcoming',
     quarter: '2027+',
-    x: 320,
+    x: 240,
     y: 960,
     category: 'agents',
     details: [
@@ -310,7 +316,7 @@ const roadmapData: RoadmapItem[] = [
     description: 'Multiple executors with proof races and decentralized infrastructure (Post-MVP)',
     status: 'upcoming',
     quarter: '2027+',
-    x: 540,
+    x: 440,
     y: 960,
     category: 'ecosystem',
     details: [
@@ -326,7 +332,7 @@ const roadmapData: RoadmapItem[] = [
     description: 'Protocol governance and community management (Post-MVP)',
     status: 'upcoming',
     quarter: '2027+',
-    x: 760,
+    x: 640,
     y: 960,
     category: 'ecosystem',
     details: [
@@ -334,6 +340,31 @@ const roadmapData: RoadmapItem[] = [
       'Parameter management',
       'Community coordination',
       'Treasury management'
+    ]
+  },
+  {
+    id: 'privacy-confidentiality',
+    title: 'Privacy & Strategy Confidentiality',
+    description: 'Privacy as a staged capability - preserving verifiability without forcing strategy disclosure',
+    status: 'upcoming',
+    quarter: '2027+',
+    x: 840,
+    y: 960,
+    category: 'ecosystem',
+    details: [
+      'Input-hiding commitment schemes for sensitive parameters',
+      'Selective disclosure of journal fields',
+      'TEE-backed confidentiality with ZK policy compliance',
+      'Hybrid execution options for heavyweight models'
+    ],
+    success_criteria: [
+      'Strategy parameters hidden from public journals',
+      'Verifiability preserved for constraint compliance',
+      'Optional privacy modes available per agent'
+    ],
+    non_goals: [
+      'Full computation hiding (out of scope for MVP)',
+      'Replacing ZK verification with TEE-only'
     ]
   }
 ];
@@ -1055,15 +1086,26 @@ export default function InteractiveRoadmap() {
                   )}
 
                   {/* Success Criteria - unified cyan styling */}
-                  {(item.quarter.includes('Q1') || item.quarter.includes('Q2') || item.quarter.includes('Q3') || item.quarter.includes('Q4')) && (
+                  {(item.success_criteria || item.quarter.includes('Q1') || item.quarter.includes('Q2') || item.quarter.includes('Q3') || item.quarter.includes('Q4')) && (
                     <div className="mb-4">
                       <h4 className="text-sm font-bold mb-3 text-cyan-300">Success Criteria</h4>
                       <ul className="text-xs text-gray-300 space-y-1.5">
-                        {item.quarter.includes('Q1') || item.quarter.includes('Q2') ? (
+                        {item.success_criteria ? (
+                          item.success_criteria.map((criteria, index) => (
+                            <li key={index} className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>{criteria}</span>
+                            </li>
+                          ))
+                        ) : item.quarter.includes('Q1') || item.quarter.includes('Q2') ? (
                           <>
                             <li className="flex items-start gap-2">
                               <span className="text-cyan-400 mt-0.5">✓</span>
-                              <span>Agent programs execute deterministically with &lt;10ms latency overhead</span>
+                              <span>Sub-10s end-to-end proving for MVP agents (1-10M params)</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 mt-0.5">✓</span>
+                              <span>Operating envelope enforced: 10-20M cycles per execution</span>
                             </li>
                             <li className="flex items-start gap-2">
                               <span className="text-cyan-400 mt-0.5">✓</span>
@@ -1101,6 +1143,21 @@ export default function InteractiveRoadmap() {
                             </li>
                           </>
                         ) : null}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Non-Goals - show when item has custom non_goals */}
+                  {item.non_goals && (
+                    <div className="mb-4">
+                      <h4 className="text-sm font-bold mb-3 text-cyan-300/70">Non-Goals</h4>
+                      <ul className="text-xs text-gray-400 space-y-1.5">
+                        {item.non_goals.map((nonGoal, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-gray-500 mt-0.5">✗</span>
+                            <span>{nonGoal}</span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   )}

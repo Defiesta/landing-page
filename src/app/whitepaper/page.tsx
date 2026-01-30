@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ExecutionWorkflowDiagram from '../components/ExecutionWorkflowDiagram';
 import ProofGenerationPipeline from '../components/ProofGenerationPipeline';
+import OperatingEnvelopeDiagram from '../components/OperatingEnvelopeDiagram';
 
 export default function WhitepaperPage() {
   return (
@@ -23,7 +24,7 @@ export default function WhitepaperPage() {
         <article className="prose prose-invert prose-lg max-w-none">
           <header className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-light mb-4">
-              Verifiable On-Chain AI Agent Marketplace
+              Verifiable ML Agent Marketplace for DeFi
             </h1>
             <div className="w-32 h-1 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 mx-auto rounded-full"></div>
           </header>
@@ -31,8 +32,14 @@ export default function WhitepaperPage() {
           <section className="mb-12">
             <h2 className="text-3xl font-semibold text-white mb-6 text-center">Abstract</h2>
             <div className="bg-gray-900/60 rounded-2xl p-8 border border-gray-700/50">
+              <p className="text-gray-300 leading-8 mb-6">
+                This paper presents a decentralized protocol that enables the creation, discovery, and use of machine-learning agents whose behavior is cryptographically verifiable on-chain. The protocol allows users to delegate constrained decision-making authority to off-chain agents while preserving strict trust-minimization guarantees: vaults execute only actions accompanied by a valid proof of compliant execution.
+              </p>
+              <p className="text-gray-300 leading-8 mb-6">
+                DeFiesta achieves this by combining (i) deterministic execution inside a zkVM, (ii) cryptographic commitments to agent code, model parameters, and constraint sets, and (iii) on-chain verification that gates settlement. Importantly, the protocol is designed for a realistic operating envelope: verifiable execution is best suited to risk management, rebalancing, governance automation, and policy-based execution—not latency-critical arbitrage.
+              </p>
               <p className="text-gray-300 leading-8">
-                This paper presents a decentralized protocol that enables the creation, discovery, and usage of artificial intelligence agents whose behavior is cryptographically verifiable on-chain. The protocol allows users to delegate capital or decision-making authority to off-chain AI agents while maintaining strict trust minimization guarantees. This is achieved through the combination of zero-knowledge proofs, constrained execution environments, and deterministic on-chain enforcement. The system is designed such that users do not need to trust agent developers, executors, or the AI models themselves, but only the underlying cryptographic assumptions.
+                The system removes trust in agent developers and executors by construction. Users need only trust standard cryptographic assumptions and the correctness of the verifier contracts.
               </p>
             </div>
           </section>
@@ -56,8 +63,11 @@ export default function WhitepaperPage() {
             <p className="text-gray-300 leading-8 mb-6">
               Visions.ai proposes a token-driven marketplace for AI agents, emphasizing economic alignment and reputation. However, agent execution remains opaque, and users must trust that reported behavior and performance accurately reflect reality. The system does not provide a mechanism to prove that an agent adhered to a specific strategy or respected predefined safety constraints during execution.
             </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              Our approach addresses a different class of problems than incentive-driven agent marketplaces. Instead of using social reputation or token economics to approximate correctness, DeFiesta enforces correctness as a verifiable property of execution. Every settled action is accompanied by proof that the agent ran the committed program, over the committed model, and produced outputs that satisfy a declared constraint set.
+            </p>
             <p className="text-gray-300 leading-8">
-              Our approach addresses a fundamentally different problem. Rather than optimizing incentives around unverifiable execution, the protocol enforces correctness at the cryptographic level. By combining deterministic execution environments with zero-knowledge proofs, constrained state transitions, and on-chain verification, the system ensures that every agent action is provably compliant with its declared behavior. Unlike prior work, trust is removed not by social or economic mechanisms alone, but by verifiable computation.
+              This is not "trustless AI" in the general sense. It is verifiable ML by design, tailored to the parts of DeFi where correctness, safety bounds, and auditability are more valuable than sub-second latency.
             </p>
           </section>
 
@@ -114,7 +124,13 @@ export default function WhitepaperPage() {
 
             <h3 className="text-2xl font-semibold text-white mb-6">2.3 Execution Environment & Determinism</h3>
             <p className="text-gray-300 leading-8 mb-6">
-              The protocol employs a zero-knowledge virtual machine (zkVM) to ensure that AI agent execution is fully deterministic and verifiable. After a detailed evaluation of available zkVM platforms, RISC Zero was selected due to its native support for floating-point operations, efficient proving pipeline, mature Ethereum integration, and formally verified RISC-V execution environment. This choice eliminates the need for quantization and complex scaling while allowing Rust-based agent code to run natively.
+              The protocol relies on a zkVM to make agent execution reproducible and objectively verifiable. However, "deterministic execution" is not a vague aspiration—it is a set of enforceable rules. DeFiesta therefore defines a Deterministic Runtime Profile for agents, specifying exactly which operations are permitted and how they must behave.
+            </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              DeFiesta uses RISC Zero to execute RISC-V guest programs and to generate proofs of execution. RISC Zero's native floating-point support is a pragmatic advantage, but floating-point alone does not guarantee bit-exact reproducibility across implementations. For that reason, DeFiesta constrains agents to a deterministic runtime: no external calls, no system time, no nondeterministic host inputs, no parallel reductions, and no architecture-dependent math intrinsics. Where numerical stability is critical, agents must rely on DeFiesta-provided deterministic math primitives (e.g., canonical f32 operations or fixed-point/softfloat variants where required).
+            </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              In short: agents are not "arbitrary Rust programs." They are programs that opt into verifiability by adhering to a deterministic execution contract—one that can be audited, tested, and enforced at build time.
             </p>
 
             <div className="mb-8">
@@ -138,7 +154,10 @@ export default function WhitepaperPage() {
 
             <h4 className="text-xl font-semibold text-white mb-4">2.3.4 Proof Generation Pipeline</h4>
             <p className="text-gray-300 leading-8 mb-6">
-              The proof pipeline transforms execution traces through multiple compression stages, achieving a 50,000,000× reduction from raw trace (~10 GB) to final proof (~200 bytes). First, the RV32IM instruction set execution generates a complete trace over the BabyBear field. This trace is segmented into 1M-cycle chunks, with each segment producing a STARK proof using FRI polynomial commitments and Poseidon2 hashing, achieving ~100 bits of security. Segment proofs are recursively aggregated into a single STARK, then compressed through a STARK-to-SNARK wrapper circuit implemented as a Groth16 proof over the BN254 curve. GPU acceleration reduces proving time to 5-15 seconds per segment, with final SNARK generation completing in approximately 30 seconds.
+              The proof pipeline transforms execution traces through multiple compression stages, achieving a 50,000,000× reduction from raw trace (~10 GB) to final proof (~200 bytes). First, the RV32IM instruction set execution generates a complete trace over the BabyBear field. This trace is segmented into 1M-cycle chunks, with each segment producing a STARK proof using FRI polynomial commitments and Poseidon2 hashing, achieving ~100 bits of security. Segment proofs are recursively aggregated into a single STARK and then compressed through a STARK-to-SNARK wrapper. In practice, compression latency is workload-dependent; DeFiesta targets sub-10s end-to-end proving for MVP agents and treats longer proving times as acceptable only for non-urgent workflows or higher-complexity models.
+            </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              A verifiable execution pipeline introduces unavoidable latency between observation and settlement. DeFiesta is therefore optimized for strategies where correctness and bounded behavior matter more than millisecond reaction time—e.g., risk checks, rebalancing, parameter updates, and policy-based automation. For state-sensitive actions, DeFiesta supports freshness bounds (see §2.5) so proofs are only valid if settlement conditions remain within declared tolerances.
             </p>
 
             <h4 className="text-xl font-semibold text-white mb-4">2.3.5 Receipt Structure and On-Chain Verification</h4>
@@ -156,10 +175,20 @@ export default function WhitepaperPage() {
               Executors participate in a decentralized network and must stake tokens to submit proofs. Slashing mechanisms penalize invalid proofs, aligning incentives with honest computation. The execution environment and proof system rely on well-established cryptographic assumptions including discrete log hardness for Groth16, the Fiat-Shamir transform for STARK soundness, and collision resistance for Poseidon2. Formal verification of RISC Zero circuits ensures correctness of instruction execution, memory safety, and cryptographic operations.
             </p>
 
-            <h4 className="text-xl font-semibold text-white mb-4">2.3.8 Supported AI Models</h4>
+            <h4 className="text-xl font-semibold text-white mb-4">2.3.8 Supported Models and Practical Limits</h4>
             <p className="text-gray-300 leading-8 mb-6">
-              The execution environment supports a variety of models, including linear and logistic regression, random forests, XGBoost, k-nearest neighbors, and neural networks, all implemented in Rust or compatible libraries. This flexibility allows DeFiesta to handle a wide range of agent strategies, from risk scoring to complex MLP-based decision-making, while maintaining verifiable, deterministic execution.
+              DeFiesta supports a range of models implemented in Rust or compatible deterministic libraries, including linear/logistic regression, tree-based methods (e.g., small random forests / gradient-boosted trees), and compact neural networks (e.g., MLPs).
             </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              However, verifiable execution has a practical operating envelope defined by zkVM cycle budgets and prover economics. For the initial protocol versions, DeFiesta is designed for small to moderate models—typically on the order of ~1–10M parameters and execution traces in the ~10–20M cycle range for inference plus constraint checks. This is sufficient for many DeFi automation tasks (risk scoring, guardrails, rebalancing policies, and signal generation), but it is not intended for "GPT-scale" inference.
+            </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              Where users require heavyweight models, DeFiesta's roadmap explicitly includes hybrid architectures (e.g., TEE-backed inference with ZK verification of policy compliance) to preserve security while maintaining practical latency.
+            </p>
+
+            <div className="mb-8">
+              <OperatingEnvelopeDiagram />
+            </div>
 
             <h4 className="text-xl font-semibold text-white mb-4">2.3.9 Implementation Roadmap</h4>
             <p className="text-gray-300 leading-8 mb-6">
@@ -173,12 +202,23 @@ export default function WhitepaperPage() {
 
             <h3 className="text-2xl font-semibold text-white mb-6">2.5 Constraint Model</h3>
             <p className="text-gray-300 leading-8 mb-6">
-              Constraints are declared by the agent developer at registration time and enforced cryptographically during execution. These constraints may include limits on drawdown, restrictions on asset transfers, bounds on position sizes, and prohibitions on certain external calls. Any execution that violates these constraints results in an invalid proof and is therefore rejected by the protocol.
+              Constraints are declared by the agent developer at registration time and enforced cryptographically during execution. Constraints may include limits on drawdown, bounds on position sizing, restrictions on asset transfers, and prohibitions on specific contract calls. Any execution that violates constraints produces an invalid proof and is rejected by the protocol.
+            </p>
+            <p className="text-gray-300 leading-8 mb-6">
+              In addition, DeFiesta supports freshness and state-binding constraints for economically sensitive actions. Agents may commit to a snapshot of relevant on-chain state (e.g., oracle price, pool reserves, vault equity) and declare validity conditions such as: "settle only if price deviation ≤ X%," "settle only if block.number ≤ snapshotBlock + N," or "settle only if liquidity remains above threshold Y." These bounds reduce the risk that a proof remains technically valid but economically stale by the time it reaches settlement.
             </p>
 
             <h3 className="text-2xl font-semibold text-white mb-6">2.6 Performance and Reputation</h3>
-            <p className="text-gray-300 leading-8">
+            <p className="text-gray-300 leading-8 mb-6">
               Performance metrics such as return on investment, volatility, and maximum drawdown are computed within zero-knowledge circuits. Because these metrics are derived from provably correct state transitions, they cannot be forged or manipulated. The resulting reputation scores provide users with a reliable basis for comparing agents.
+            </p>
+
+            <h3 className="text-2xl font-semibold text-white mb-6">2.7 Privacy and Strategy Confidentiality</h3>
+            <p className="text-gray-300 leading-8 mb-6">
+              DeFiesta proofs certify correct execution and constraint compliance, but proofs alone do not automatically provide confidentiality. In the MVP architecture, journals and committed inputs may reveal aspects of an agent's decisions or a user's parameters, which can enable strategy inference in adversarial environments.
+            </p>
+            <p className="text-gray-300 leading-8">
+              DeFiesta therefore treats privacy as a staged capability. Early deployments prioritize correctness and enforceability; subsequent versions introduce confidentiality through (i) input-hiding commitment schemes for sensitive parameters, (ii) selective disclosure of journal fields, and (iii) hybrid execution options (e.g., TEE-backed confidentiality with ZK-backed policy compliance) where appropriate. The goal is to preserve verifiability without forcing strategy disclosure as the default.
             </p>
           </section>
 
