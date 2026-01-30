@@ -56,7 +56,7 @@ export default function AboutPage() {
         {/* CTA Button */}
         <div className="flex justify-center mb-20">
           <a
-            href="mailto:mberiane@defiesta.net"
+            href="mailto:mehd1b@defiesta.xyz"
             className="px-8 py-4 rounded-xl border-2 border-dashed border-cyan-400/50 hover:border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 transition-all duration-300 text-lg font-medium"
           >
             Get in Touch

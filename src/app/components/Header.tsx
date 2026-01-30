@@ -49,7 +49,7 @@ const COMPANY_SECTIONS: CompanySection[] = [
     heading: "About Us",
     links: [
       { title: "About", description: "Our mission and story", href: "/about" },
-      { title: "Contact Us", description: "Get in touch with us", href: "mailto:mberiane@defiesta.net" },
+      { title: "Contact Us", description: "Get in touch with us", href: "mailto:mehd1b@defiesta.xyz" },
     ]
   },
   {
