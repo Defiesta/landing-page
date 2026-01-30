@@ -85,7 +85,7 @@ export default function HeroSection() {
             <span className="block mt-2">
               <span className="relative inline-block">
                 <span className="bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient-shift">
-                  AI Agents
+                  ML Agents
                 </span>
                 <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400"></div>
               </span>
@@ -108,7 +108,7 @@ export default function HeroSection() {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Deploy AI agents that execute DeFi strategies with{' '}
+            Deploy Machine Learning agents that execute DeFi strategies with{' '}
             <span className="text-cyan-400">zero-knowledge proofs</span>.
             Trustless, verifiable, and autonomous financial execution on-chain.
           </p>

@@ -13,7 +13,7 @@ interface Pillar {
 const pillars: Pillar[] = [
   {
     title: "Agent Registry",
-    description: "Deploy and register AI agents with cryptographic identity binding. Each agent's code hash and imageId are committed on-chain, ensuring only verified code executes.",
+    description: "Deploy and register ML agents with cryptographic identity binding. Each agent's code hash and imageId are committed on-chain, ensuring only verified code executes.",
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 28 28" fill="none">
         {/* Connected nodes representing registry network */}
@@ -174,16 +174,16 @@ export default function PillarsSection() {
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-emerald-950/5 to-transparent"></div>
 
       {/* Top border with gradient */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-linear-to-r from-transparent via-gray-800 to-transparent"></div>
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gray-800 to-transparent"></div>
 
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-1/4 left-[5%] w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.02]"
+          className="absolute top-1/4 left-[5%] w-100 h-100 rounded-full blur-3xl opacity-[0.02]"
           style={{ background: 'radial-gradient(circle, #00d4ff 0%, transparent 70%)' }}
         />
         <div
-          className="absolute bottom-1/4 right-[5%] w-[350px] h-[350px] rounded-full blur-3xl opacity-[0.02]"
+          className="absolute bottom-1/4 right-[5%] w-87.5 h-87.5 rounded-full blur-3xl opacity-[0.02]"
           style={{ background: 'radial-gradient(circle, #00d4ff 0%, transparent 70%)' }}
         />
       </div>
@@ -222,7 +222,7 @@ export default function PillarsSection() {
               onMouseLeave={() => handleMouseLeave(index)}
             >
               <div
-                className="relative h-[320px] transition-transform duration-200 ease-out cursor-pointer"
+                className="relative h-80 transition-transform duration-200 ease-out cursor-pointer"
                 style={{
                   transform: `rotateX(${cardStates[index].rotateX}deg) rotateY(${cardStates[index].rotateY}deg)`,
                   transformStyle: 'preserve-3d'
@@ -297,7 +297,7 @@ export default function PillarsSection() {
                   {/* Bottom indicator */}
                   <div className="mt-4 flex items-center gap-3">
                     <div
-                      className="h-[2px] flex-1 rounded-full transition-all duration-500 origin-left scale-x-0 group-hover:scale-x-100"
+                      className="h-0.5 flex-1 rounded-full transition-all duration-500 origin-left scale-x-0 group-hover:scale-x-100"
                       style={{ background: `linear-gradient(90deg, ${pillar.color}, transparent)` }}
                     ></div>
                     <div
@@ -315,22 +315,22 @@ export default function PillarsSection() {
                 {/* Corner accents */}
                 <div className="absolute top-4 left-4 w-6 h-6 pointer-events-none">
                   <div
-                    className="absolute top-0 left-0 w-full h-[2px] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                    className="absolute top-0 left-0 w-full h-0.5 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                     style={{ background: `linear-gradient(90deg, ${pillar.color}80, transparent)` }}
                   ></div>
                   <div
-                    className="absolute top-0 left-0 w-[2px] h-full transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-75"
+                    className="absolute top-0 left-0 w-0.5 h-full transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-75"
                     style={{ background: `linear-gradient(180deg, ${pillar.color}80, transparent)` }}
                   ></div>
                 </div>
 
                 <div className="absolute bottom-4 right-4 w-6 h-6 pointer-events-none">
                   <div
-                    className="absolute bottom-0 right-0 w-full h-[2px] transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300 delay-150"
+                    className="absolute bottom-0 right-0 w-full h-0.5 transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300 delay-150"
                     style={{ background: `linear-gradient(270deg, ${pillar.color}80, transparent)` }}
                   ></div>
                   <div
-                    className="absolute bottom-0 right-0 w-[2px] h-full transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-225"
+                    className="absolute bottom-0 right-0 w-0.5 h-full transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-225"
                     style={{ background: `linear-gradient(0deg, ${pillar.color}80, transparent)` }}
                   ></div>
                 </div>
