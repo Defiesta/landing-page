@@ -56,7 +56,7 @@ const COMPANY_SECTIONS: CompanySection[] = [
     heading: "Socials",
     links: [
       { title: "GitHub", description: "View our code", href: "https://github.com/Defiesta", icon: SOCIAL_ICONS.github },
-      { title: "X", description: "Follow us", href: "https://x.com/DeFiestaRoom", icon: SOCIAL_ICONS.x },
+      { title: "X", description: "Follow us", href: "https://x.com/defiestaxyz", icon: SOCIAL_ICONS.x },
       { title: "Telegram", description: "Join our community", href: "https://t.me/defiesta", icon: SOCIAL_ICONS.telegram },
       { title: "Discord", description: "Chat with us", href: "https://discord.gg/v3Se8GytFc", icon: SOCIAL_ICONS.discord },
       { title: "Medium", description: "Read our blog", href: "https://medium.com/@mehd1b", icon: SOCIAL_ICONS.medium },
@@ -591,7 +591,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
             <div className="p-6 border-t border-gray-700/30">
               <div className="flex space-x-6 justify-center">
                 <a
-                  href="https://x.com/DeFiestaRoom"
+                  href="https://x.com/defiestaxyz"
                   className="p-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
