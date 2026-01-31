@@ -39,7 +39,7 @@ const roadmapData: RoadmapItem[] = [
       'Proof pipeline to Ethereum',
       'Operating Envelope: 1-10M params, sub-10s proving, 10-20M cycles'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel'
+    link: 'https://github.com/Defiesta/execution-kernel/crates'
   },
   {
     id: 'agent-trait-interface',
@@ -56,7 +56,7 @@ const roadmapData: RoadmapItem[] = [
       'Output/actions format',
       'Constraint enforcement semantics'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel'
+    link: 'https://github.com/Defiesta/execution-kernel/crates'
   },
   {
     id: 'transcript-determinism',
@@ -74,7 +74,7 @@ const roadmapData: RoadmapItem[] = [
       'Deterministic Runtime Profile: no time, no network, no parallel reductions',
       'Deterministic math primitives (canonical f32 / fixed-point)'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel'
+    link: 'https://github.com/Defiesta/execution-kernel/crates'
   },
   {
     id: 'developer-sdk',
@@ -91,13 +91,13 @@ const roadmapData: RoadmapItem[] = [
       'Example agents and templates',
       'CI/testing suite for guest + host'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel'
+    link: 'https://github.com/Defiesta/execution-kernel/crates'
   },
   {
     id: 'on-chain-interfaces',
     title: 'On-Chain Interface Standards',
     description: 'Vault, proof submission, and registry interfaces with multionce scheme',
-    status: 'in-progress',
+    status: 'completed',
     quarter: 'Q2 2026',
     x: 240,
     y: 480,
@@ -109,13 +109,14 @@ const roadmapData: RoadmapItem[] = [
       'Replay/multinonce scheme',
       'Freshness bounds for state-sensitive actions',
       'State-binding constraints (price deviation, block bounds)'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel/contracts'
   },
   {
     id: 'execution-flow-mvp',
     title: 'Execution Flow v1',
     description: 'Complete user-to-settlement flow with first agent deployment',
-    status: 'upcoming',
+    status: 'completed',
     quarter: 'Q2 2026',
     x: 440,
     y: 480,
@@ -125,13 +126,14 @@ const roadmapData: RoadmapItem[] = [
       'First agent deployment + proof settlement',
       'User allocation to agents',
       'Automatic settlement'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel/crates'
   },
   {
     id: 'defi-integration-mvp',
     title: 'DeFi & On-chain Integration',
     description: 'Vaults, registry, and verifier contracts with basic DeFi interactions',
-    status: 'upcoming',
+    status: 'completed',
     quarter: 'Q2 2026',
     x: 640,
     y: 480,
@@ -141,13 +143,14 @@ const roadmapData: RoadmapItem[] = [
       'Agent registry deployment',
       'Proof verifier contracts',
       'Basic DeFi interaction patterns'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel/contracts'
   },
   {
     id: 'proof-format-standard',
     title: 'Proof Format Standardization',
     description: 'Receipt structure, journal formats, and verification specifications',
-    status: 'upcoming',
+    status: 'completed',
     quarter: 'Q2 2026',
     x: 840,
     y: 480,
@@ -157,7 +160,8 @@ const roadmapData: RoadmapItem[] = [
       'Journal format standards',
       'Verification interface',
       'Proof metadata schemas'
-    ]
+    ],
+    link: 'https://github.com/Defiesta/execution-kernel/crates'
   },
 
   // Phase 2 - Marketplace & Economics (Q3 2026)
@@ -426,7 +430,7 @@ export default function InteractiveRoadmap() {
   };
 
   const statusColors = {
-    completed: cyanLight,
+    completed: '#4ADE80',  // green-400
     'in-progress': cyanPrimary,
     upcoming: '#164E63'  // cyan-900
   };
@@ -574,7 +578,7 @@ export default function InteractiveRoadmap() {
           <h4 className="text-xs font-semibold mb-2 text-cyan-400/80">Status</h4>
           <div className="flex gap-4 text-xs">
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-cyan-300 shadow-sm shadow-cyan-300/50" />
+              <div className="w-2 h-2 rounded-full bg-green-400 shadow-sm shadow-green-400/50" />
               <span className="text-gray-400">Done</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -845,7 +849,7 @@ export default function InteractiveRoadmap() {
             const phaseColor = phaseColors[item.quarter];
             const statusColor = statusColors[item.status];
             const isCompleted = item.status === 'completed';
-            const nodeColor = isCompleted ? cyanLight : phaseColor;
+            const nodeColor = isCompleted ? '#4ADE80' : phaseColor;  // green-400 for completed
 
             return (
               <g key={item.id}>
@@ -882,7 +886,7 @@ export default function InteractiveRoadmap() {
                   cy={item.y}
                   r={nodeSize}
                   fill={nodeColor}
-                  stroke={isCompleted ? cyanLight : phaseColor}
+                  stroke={isCompleted ? '#4ADE80' : phaseColor}
                   strokeWidth={isCompleted ? "4" : "3"}
                   className="milestone-node cursor-pointer transition-all duration-300"
                   onClick={(e) => {
@@ -910,7 +914,7 @@ export default function InteractiveRoadmap() {
                       cx={item.x}
                       cy={item.y}
                       r={nodeSize - 10}
-                      fill="rgba(103, 232, 249, 0.3)"
+                      fill="rgba(74, 222, 128, 0.3)"
                     />
                     <path
                       d={`M ${item.x - 8} ${item.y} L ${item.x - 2} ${item.y + 6} L ${item.x + 10} ${item.y - 6}`}

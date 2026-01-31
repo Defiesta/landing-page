@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Defiesta",
-  description: "DEFI AI Marketplace",
+  description: "DEFI ML Marketplace",
 };
 
 export default function RootLayout({

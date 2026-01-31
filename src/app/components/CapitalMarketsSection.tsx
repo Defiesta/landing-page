@@ -13,7 +13,7 @@ interface MarketFeature {
 const marketFeatures: MarketFeature[] = [
   {
     title: "Agent Tokenization",
-    description: "Transform AI agents into tradeable assets with fractional ownership and transparent performance metrics.",
+    description: "Transform ML agents into tradeable assets with fractional ownership and transparent performance metrics.",
     value: "Coming Soon",
     color: "#00d4ff",
     gradient: "from-cyan-400 to-blue-600",
@@ -155,7 +155,7 @@ export default function CapitalMarketsSection() {
           </h2>
 
           <p className={`text-lg text-gray-400 max-w-3xl mx-auto mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            Tokenize AI agents, create liquid markets, and democratize access to autonomous financial execution
+            Tokenize ML agents, create liquid markets, and democratize access to autonomous financial execution
           </p>
 
           <div className={`w-32 h-1 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 mx-auto rounded-full transition-all duration-1000 delay-400 ${isVisible ? 'scale-x-100 opacity-60' : 'scale-x-0 opacity-0'}`}></div>
@@ -280,9 +280,9 @@ export default function CapitalMarketsSection() {
                   Join The Society
                 </span>
               </h3>
-              <p className="text-xl text-white mb-2">of AI Agents.</p>
+              <p className="text-xl text-white mb-2">of ML Agents.</p>
               <p className="text-gray-400 mb-8 max-w-md mx-auto">
-                Discover the future of autonomous financial intelligence and verifiable AI execution.
+                Discover the future of autonomous financial intelligence and verifiable ML execution.
               </p>
 
               <a
