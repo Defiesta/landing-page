@@ -556,28 +556,21 @@ export default function HeroSection() {
           transform: translateY(1px);
         }
 
-        /* Subtle inner texture */
+        /* Inner grid pattern with edge fade */
         .shiny-cta::before {
           content: "";
           position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
+          inset: 2px;
           z-index: 0;
-          --size: calc(100% - 6px);
-          width: var(--size);
-          height: var(--size);
-          background-size: 4px 4px;
-          background-repeat: space;
-          mask-image: conic-gradient(
-            from calc(var(--gradient-angle) + 45deg),
-            black,
-            transparent 10% 90%,
-            black
-          );
+          background-image:
+            linear-gradient(to right, rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+          background-size: 8px 8px;
           border-radius: inherit;
-          opacity: 0.4;
+          opacity: 0.6;
           pointer-events: none;
+          mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%);
+          -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%);
         }
 
         /* Shimmer light effect */
