@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import AnimatedBackground from './components/AnimatedBackground';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
@@ -10,8 +9,7 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-black text-white relative">
-      <AnimatedBackground hidden={isMobileMenuOpen} />
+    <div className="min-h-screen bg-[#030303] text-white relative">
       <Header onMenuToggle={setIsMobileMenuOpen} />
 
       <main className="relative z-10">

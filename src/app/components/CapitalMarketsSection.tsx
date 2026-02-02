@@ -124,11 +124,11 @@ export default function CapitalMarketsSection() {
       {/* Animated background circles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-20 left-[10%] w-[500px] h-[500px] rounded-full blur-3xl opacity-[0.03]"
+          className="absolute top-20 left-[10%] w-125 h-125 rounded-full blur-3xl opacity-[0.03]"
           style={{ background: 'radial-gradient(circle, #00d4ff 0%, transparent 70%)' }}
         />
         <div
-          className="absolute bottom-20 right-[10%] w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.03]"
+          className="absolute bottom-20 right-[10%] w-100 h-100 rounded-full blur-3xl opacity-[0.03]"
           style={{ background: 'radial-gradient(circle, #a855f7 0%, transparent 70%)' }}
         />
       </div>
@@ -174,7 +174,7 @@ export default function CapitalMarketsSection() {
               onMouseLeave={() => handleMouseLeave(index)}
             >
               <div
-                className="relative h-[380px] transition-transform duration-200 ease-out cursor-pointer"
+                className="relative h-95 transition-transform duration-200 ease-out cursor-pointer"
                 style={{
                   transform: `rotateX(${cardStates[index].rotateX}deg) rotateY(${cardStates[index].rotateY}deg)`,
                   transformStyle: 'preserve-3d'
@@ -196,7 +196,7 @@ export default function CapitalMarketsSection() {
 
                 {/* Top glow line */}
                 <div
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{ background: `linear-gradient(90deg, transparent, ${feature.color}, transparent)` }}
                 ></div>
 
@@ -244,22 +244,22 @@ export default function CapitalMarketsSection() {
                 {/* Corner accents */}
                 <div className="absolute top-4 left-4 w-8 h-8 pointer-events-none">
                   <div
-                    className="absolute top-0 left-0 w-full h-[2px] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                    className="absolute top-0 left-0 w-full h-0.5 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                     style={{ background: `linear-gradient(90deg, ${feature.color}, transparent)` }}
                   ></div>
                   <div
-                    className="absolute top-0 left-0 w-[2px] h-full transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-100"
+                    className="absolute top-0 left-0 w-0.5 h-full transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-100"
                     style={{ background: `linear-gradient(180deg, ${feature.color}, transparent)` }}
                   ></div>
                 </div>
 
                 <div className="absolute bottom-4 right-4 w-8 h-8 pointer-events-none">
                   <div
-                    className="absolute bottom-0 right-0 w-full h-[2px] transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300 delay-200"
+                    className="absolute bottom-0 right-0 w-full h-0.5 transform origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300 delay-200"
                     style={{ background: `linear-gradient(270deg, ${feature.color}, transparent)` }}
                   ></div>
                   <div
-                    className="absolute bottom-0 right-0 w-[2px] h-full transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-300"
+                    className="absolute bottom-0 right-0 w-0.5 h-full transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 delay-300"
                     style={{ background: `linear-gradient(0deg, ${feature.color}, transparent)` }}
                   ></div>
                 </div>

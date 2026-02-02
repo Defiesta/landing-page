@@ -355,12 +355,52 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
 
   return (
     <>
-      <nav className="relative z-50 flex items-center justify-between px-8 py-6 bg-transparent">
-        <a href="/" className="relative">
-          <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 rounded-lg"></div>
-          <div className="relative px-4 py-2 bg-black rounded-lg text-xl font-semibold text-white hover:text-cyan-400 transition-colors duration-300">
-            DEFIESTA
+      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6">
+        {/* Home Button - Aura Style */}
+        <a href="/" className="group flex items-center gap-3">
+          {/* Radar Icon */}
+          <div className="relative w-10 h-10">
+            <svg viewBox="0 0 40 40" className="w-full h-full">
+              {/* Outer ring */}
+              <circle
+                cx="20"
+                cy="20"
+                r="16"
+                fill="none"
+                stroke="#38BDF8"
+                strokeWidth="1"
+                strokeOpacity="0.3"
+                strokeDasharray="4 4"
+                className="group-hover:stroke-opacity-60 transition-all duration-300"
+              />
+              {/* Inner ring */}
+              <circle
+                cx="20"
+                cy="20"
+                r="10"
+                fill="none"
+                stroke="#38BDF8"
+                strokeWidth="1"
+                strokeOpacity="0.5"
+                className="group-hover:stroke-opacity-80 transition-all duration-300"
+              />
+              {/* Center dot */}
+              <circle
+                cx="20"
+                cy="20"
+                r="3"
+                fill="#38BDF8"
+                className="group-hover:filter group-hover:drop-shadow-[0_0_6px_#38BDF8] transition-all duration-300"
+              />
+            </svg>
           </div>
+          {/* Text */}
+          <span
+            className="text-lg font-medium tracking-wider text-white group-hover:text-[#38BDF8] transition-colors duration-300"
+            style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}
+          >
+            DEFIESTA
+          </span>
         </a>
 
         {/* Desktop Menu */}
@@ -478,11 +518,18 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
           <div className="flex flex-col h-full">
             {/* Header with close button */}
             <div className="flex items-center justify-between px-8 py-6 border-b border-gray-700/30">
-              <a href="/" className="relative">
-                <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-400 via-purple-500 to-emerald-400 rounded-lg"></div>
-                <div className="relative px-4 py-2 bg-black rounded-lg text-xl font-semibold text-white">
-                  DEFIESTA
+              <a href="/" className="flex items-center gap-3">
+                {/* Radar Icon */}
+                <div className="relative w-10 h-10">
+                  <svg viewBox="0 0 40 40" className="w-full h-full">
+                    <circle cx="20" cy="20" r="16" fill="none" stroke="#38BDF8" strokeWidth="1" strokeOpacity="0.3" strokeDasharray="4 4" />
+                    <circle cx="20" cy="20" r="10" fill="none" stroke="#38BDF8" strokeWidth="1" strokeOpacity="0.5" />
+                    <circle cx="20" cy="20" r="3" fill="#38BDF8" />
+                  </svg>
                 </div>
+                <span className="text-lg font-medium tracking-wider text-white" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                  DEFIESTA
+                </span>
               </a>
               <button
                 onClick={toggleMenu}
