@@ -79,16 +79,10 @@ export default function HeroSection() {
               href="https://www.docs.defiesta.xyz/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-8 py-4 rounded-full overflow-hidden"
+              className="shiny-cta group"
+              style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}
             >
-              <div
-                className="absolute inset-0 rounded-full animate-border-spin"
-                style={{
-                  background: 'conic-gradient(from var(--gradient-angle, 0deg), #00d4ff, #0ea5e9, #38bdf8, #00d4ff)'
-                }}
-              />
-              <div className="absolute inset-[1.5px] rounded-full bg-[#0a0a0f]" />
-              <span className="relative z-10 flex items-center gap-2 text-[#38BDF8] font-medium" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+              <span className="shiny-cta-text flex items-center gap-2">
                 Initialize Protocol
                 <svg
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
@@ -498,10 +492,138 @@ export default function HeroSection() {
           animation: breathe 4s ease-in-out infinite;
         }
 
+        /* CSS Custom Properties for animated gradients */
         @property --gradient-angle {
           syntax: '<angle>';
           initial-value: 0deg;
           inherits: false;
+        }
+
+        @property --gradient-angle-offset {
+          syntax: '<angle>';
+          initial-value: 0deg;
+          inherits: false;
+        }
+
+        /* Shiny CTA Button */
+        .shiny-cta {
+          --gradient-angle: 0deg;
+          --gradient-angle-offset: 0deg;
+          --gradient-percent: 20%;
+          --gradient-shine: #38BDF8;
+
+          position: relative;
+          overflow: hidden;
+          border-radius: 9999px;
+          padding: 1rem 2rem;
+          font-size: 1rem;
+          line-height: 1.2;
+          font-weight: 500;
+          color: #38BDF8;
+          background:
+            linear-gradient(#030303, #030303) padding-box,
+            conic-gradient(
+              from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+              transparent 0%,
+              #0ea5e9 5%,
+              var(--gradient-shine) 15%,
+              #0ea5e9 30%,
+              transparent 40%,
+              transparent 100%
+            ) border-box;
+          border: 2px solid transparent;
+          box-shadow: rgb(26, 24, 24) 0px 0px 0px 1px inset;
+          outline: none;
+          transition:
+            --gradient-angle-offset 800ms cubic-bezier(0.25, 1, 0.5, 1),
+            --gradient-percent 800ms cubic-bezier(0.25, 1, 0.5, 1),
+            --gradient-shine 800ms cubic-bezier(0.25, 1, 0.5, 1),
+            box-shadow 0.3s;
+          cursor: pointer;
+          isolation: isolate;
+          animation: border-spin 2.5s linear infinite;
+          text-decoration: none;
+          display: inline-block;
+        }
+
+        .shiny-cta:hover {
+          --gradient-shine: #67e8f9;
+          box-shadow: rgb(26, 24, 24) 0px 0px 0px 1px inset,
+                      rgba(56, 189, 248, 0.3) 0px 0px 20px 0px;
+        }
+
+        .shiny-cta:active {
+          transform: translateY(1px);
+        }
+
+        /* Subtle inner texture */
+        .shiny-cta::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 0;
+          --size: calc(100% - 6px);
+          width: var(--size);
+          height: var(--size);
+          background-size: 4px 4px;
+          background-repeat: space;
+          mask-image: conic-gradient(
+            from calc(var(--gradient-angle) + 45deg),
+            black,
+            transparent 10% 90%,
+            black
+          );
+          border-radius: inherit;
+          opacity: 0.4;
+          pointer-events: none;
+        }
+
+        /* Shimmer light effect */
+        .shiny-cta::after {
+          content: "";
+          pointer-events: none;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          background: linear-gradient(-50deg, transparent, rgba(14, 165, 233, 0.4), transparent);
+          mask-image: radial-gradient(circle at center bottom, transparent 40%, black);
+          opacity: 0.6;
+          animation: shimmer 4s linear infinite;
+        }
+
+        /* Text wrapper */
+        .shiny-cta-text {
+          position: relative;
+          z-index: 2;
+          display: inline-flex;
+        }
+
+        /* Breathing glow behind text */
+        .shiny-cta-text::before {
+          content: "";
+          pointer-events: none;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          z-index: -1;
+          width: calc(100% + 1rem);
+          height: calc(100% + 1rem);
+          box-shadow: rgb(14, 165, 233) 0px -1ex 2rem 4px inset;
+          opacity: 0;
+          border-radius: inherit;
+          transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+          animation: text-breathe 4.5s linear infinite;
+        }
+
+        .shiny-cta:hover .shiny-cta-text::before {
+          opacity: 0.4;
         }
 
         @keyframes border-spin {
@@ -513,8 +635,22 @@ export default function HeroSection() {
           }
         }
 
-        .animate-border-spin {
-          animation: border-spin 3s linear infinite;
+        @keyframes shimmer {
+          0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+          }
+          100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+        }
+
+        @keyframes text-breathe {
+          0%, 100% {
+            transform: translate(-50%, -50%) scale(1);
+          }
+          50% {
+            transform: translate(-50%, -50%) scale(1.2);
+          }
         }
       `}</style>
     </section>
