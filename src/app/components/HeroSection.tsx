@@ -10,6 +10,14 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Aurora fade overlay - blocks aurora from radar zone */}
+      <div
+        className="absolute inset-0 pointer-events-none z-2"
+        style={{
+          background: 'linear-gradient(to right, transparent 0%, transparent 35%, rgba(3,3,3,0.95) 55%, #030303 65%)'
+        }}
+      />
+
       {/* Dot Pattern Overlay - Right Side */}
       <div
         className="absolute top-0 right-0 w-1/2 h-full pointer-events-none z-[3]"
@@ -287,7 +295,7 @@ export default function HeroSection() {
               <circle cx="350" cy="420" r="2" fill="#38BDF8" fillOpacity="0.4" />
               <circle cx="240" cy="160" r="1.5" fill="#38BDF8" fillOpacity="0.5" />
 
-              {/* ZERO LATENCY Label - Top Left */}
+              {/* LOW LATENCY Label - Top Left */}
               <g transform="translate(80, 120)">
                 <text
                   fill="#38BDF8"
@@ -295,7 +303,7 @@ export default function HeroSection() {
                   letterSpacing="1.2"
                   style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}
                 >
-                  ZERO LATENCY
+                  LOW LATENCY
                 </text>
                 <line x1="0" y1="16" x2="95" y2="16" stroke="#38BDF8" strokeWidth="1" strokeOpacity="0.5" />
               </g>
