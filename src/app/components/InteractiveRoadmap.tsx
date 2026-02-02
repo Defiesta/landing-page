@@ -39,7 +39,7 @@ const roadmapData: RoadmapItem[] = [
       'Proof pipeline to Ethereum',
       'Operating Envelope: 1-10M params, sub-10s proving, 10-20M cycles'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/crates'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/crates'
   },
   {
     id: 'agent-trait-interface',
@@ -56,7 +56,7 @@ const roadmapData: RoadmapItem[] = [
       'Output/actions format',
       'Constraint enforcement semantics'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/crates'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/crates'
   },
   {
     id: 'transcript-determinism',
@@ -74,7 +74,7 @@ const roadmapData: RoadmapItem[] = [
       'Deterministic Runtime Profile: no time, no network, no parallel reductions',
       'Deterministic math primitives (canonical f32 / fixed-point)'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/crates'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/crates'
   },
   {
     id: 'developer-sdk',
@@ -91,7 +91,7 @@ const roadmapData: RoadmapItem[] = [
       'Example agents and templates',
       'CI/testing suite for guest + host'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/crates'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/crates'
   },
   {
     id: 'on-chain-interfaces',
@@ -110,7 +110,7 @@ const roadmapData: RoadmapItem[] = [
       'Freshness bounds for state-sensitive actions',
       'State-binding constraints (price deviation, block bounds)'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/contracts'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/contracts'
   },
   {
     id: 'execution-flow-mvp',
@@ -127,7 +127,7 @@ const roadmapData: RoadmapItem[] = [
       'User allocation to agents',
       'Automatic settlement'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/crates'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/crates'
   },
   {
     id: 'defi-integration-mvp',
@@ -144,7 +144,7 @@ const roadmapData: RoadmapItem[] = [
       'Proof verifier contracts',
       'Basic DeFi interaction patterns'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/contracts'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/contracts'
   },
   {
     id: 'proof-format-standard',
@@ -161,7 +161,7 @@ const roadmapData: RoadmapItem[] = [
       'Verification interface',
       'Proof metadata schemas'
     ],
-    link: 'https://github.com/Defiesta/execution-kernel/crates'
+    link: 'https://github.com/Defiesta/execution-kernel/tree/main/crates'
   },
 
   // Phase 2 - Marketplace & Economics (Q3 2026)
