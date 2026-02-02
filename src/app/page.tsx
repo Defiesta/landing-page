@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
+import FeaturesSection from './components/FeaturesSection';
 import PillarsSection from './components/PillarsSection';
 import AuroraBackground from './components/AuroraBackground';
 
@@ -32,6 +33,7 @@ export default function Home() {
 
       <main className="relative z-10">
         <HeroSection />
+        <FeaturesSection />
         <PillarsSection />
       </main>
 
