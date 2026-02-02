@@ -546,12 +546,6 @@ export default function HeroSection() {
           display: inline-block;
         }
 
-        .shiny-cta:hover {
-          --gradient-shine: #67e8f9;
-          box-shadow: rgb(26, 24, 24) 0px 0px 0px 1px inset,
-                      rgba(56, 189, 248, 0.3) 0px 0px 20px 0px;
-        }
-
         .shiny-cta:active {
           transform: translateY(1px);
         }
@@ -570,7 +564,7 @@ export default function HeroSection() {
           opacity: 0.6;
           pointer-events: none;
           mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%);
-          -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%);
+          -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 50%);
         }
 
         /* Shimmer light effect */
@@ -613,10 +607,6 @@ export default function HeroSection() {
           border-radius: inherit;
           transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
           animation: text-breathe 4.5s linear infinite;
-        }
-
-        .shiny-cta:hover .shiny-cta-text::before {
-          opacity: 0.4;
         }
 
         @keyframes border-spin {
