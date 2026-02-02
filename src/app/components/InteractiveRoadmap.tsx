@@ -416,23 +416,23 @@ export default function InteractiveRoadmap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  // Unified cyan color scheme with opacity variations for hierarchy
-  const cyanPrimary = '#22D3EE'; // cyan-400
-  const cyanLight = '#67E8F9';   // cyan-300
-  const cyanDark = '#06B6D4';    // cyan-500
+  // Unified cyan color scheme matching home page
+  const cyanPrimary = '#38BDF8'; // main brand cyan
+  const cyanLight = '#38BDF8';   // same for consistency
+  const cyanDark = '#0ea5e9';    // slightly darker
 
   const phaseColors: Record<string, string> = {
     'Q1 2026': cyanPrimary,
     'Q2 2026': cyanPrimary,
-    'Q3 2026': cyanLight,
+    'Q3 2026': cyanPrimary,
     'Q4 2026': cyanDark,
-    '2027+': '#0891B2'  // cyan-600
+    '2027+': '#0284c7'
   };
 
   const statusColors = {
     completed: '#4ADE80',  // green-400
     'in-progress': cyanPrimary,
-    upcoming: '#164E63'  // cyan-900
+    upcoming: '#0c4a6e'
   };
 
 
@@ -501,14 +501,25 @@ export default function InteractiveRoadmap() {
   }, [isFullscreen]);
 
   return (
-    <div 
-      className={`relative ${isFullscreen ? 'fixed inset-0 z-50 bg-black' : 'w-full h-full'} overflow-hidden`}
+    <div
+      className={`relative ${isFullscreen ? 'fixed inset-0 z-50 bg-black' : 'w-full h-full'} overflow-hidden animate-fade-in`}
+      style={{ animation: 'fadeIn 0.8s ease-out' }}
     >
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
 
       {/* Home Button */}
       <a
         href="/"
-        className="absolute top-4 left-4 z-20 flex items-center gap-2 px-4 py-2 bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm group"
+        className="absolute top-4 left-4 z-20 flex items-center gap-2 px-4 py-2 bg-gray-950/90 hover:bg-[#38BDF8]/10 rounded-lg border border-[#38BDF8]/20 hover:border-[#38BDF8]/40 text-[#38BDF8] transition-all backdrop-blur-sm group"
       >
         <svg
           className="w-4 h-4 transition-transform group-hover:-translate-x-0.5"
@@ -525,28 +536,28 @@ export default function InteractiveRoadmap() {
       <div className="absolute top-4 right-4 z-20 flex gap-1.5">
         <button
           onClick={zoomOut}
-          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-[#38BDF8]/10 rounded-lg border border-[#38BDF8]/20 hover:border-[#38BDF8]/40 text-[#38BDF8] transition-all backdrop-blur-sm"
           title="Zoom Out"
         >
           −
         </button>
         <button
           onClick={zoomIn}
-          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-[#38BDF8]/10 rounded-lg border border-[#38BDF8]/20 hover:border-[#38BDF8]/40 text-[#38BDF8] transition-all backdrop-blur-sm"
           title="Zoom In"
         >
           +
         </button>
         <button
           onClick={resetView}
-          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-[#38BDF8]/10 rounded-lg border border-[#38BDF8]/20 hover:border-[#38BDF8]/40 text-[#38BDF8] transition-all backdrop-blur-sm"
           title="Reset View"
         >
           ⌂
         </button>
         <button
           onClick={toggleFullscreen}
-          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-cyan-400/10 rounded-lg border border-cyan-400/20 hover:border-cyan-400/40 text-cyan-400 transition-all backdrop-blur-sm"
+          className="w-9 h-9 flex items-center justify-center bg-gray-950/90 hover:bg-[#38BDF8]/10 rounded-lg border border-[#38BDF8]/20 hover:border-[#38BDF8]/40 text-[#38BDF8] transition-all backdrop-blur-sm"
           title="Fullscreen"
         >
           ⛶
@@ -554,39 +565,39 @@ export default function InteractiveRoadmap() {
       </div>
 
       {/* Phase Color Legend */}
-      <div className="absolute bottom-4 left-4 z-20 bg-gray-950/90 rounded-xl p-4 border border-cyan-400/20 backdrop-blur-md shadow-lg shadow-cyan-500/10">
-        <h3 className="text-sm font-bold mb-3 text-cyan-400 tracking-wide">Development Phases</h3>
+      <div className="absolute bottom-4 left-4 z-20 bg-gray-950/90 rounded-xl p-4 border border-[#38BDF8]/20 backdrop-blur-md shadow-lg shadow-[#38BDF8]/10">
+        <h3 className="text-sm font-bold mb-3 text-[#38BDF8] tracking-wide">Development Phases</h3>
         <div className="space-y-2.5">
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-3 h-3 rounded-full border border-cyan-300/50" style={{ backgroundColor: '#22D3EE', boxShadow: '0 0 12px #22D3EE60' }} />
+            <div className="w-3 h-3 rounded-full border border-[#38BDF8]/50" style={{ backgroundColor: '#38BDF8', boxShadow: '0 0 12px rgba(56,189,248,0.4)' }} />
             <span className="text-gray-300 font-medium">Phase 1: Core Protocol (Q1-Q2 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-3 h-3 rounded-full border border-cyan-400/50" style={{ backgroundColor: '#06B6D4', boxShadow: '0 0 10px #06B6D450' }} />
+            <div className="w-3 h-3 rounded-full border border-[#38BDF8]/50" style={{ backgroundColor: '#0ea5e9', boxShadow: '0 0 10px rgba(14,165,233,0.4)' }} />
             <span className="text-gray-300 font-medium">Phase 2: MVP Execution (Q3 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-3 h-3 rounded-full border border-cyan-500/50" style={{ backgroundColor: '#0891B2', boxShadow: '0 0 8px #0891B240' }} />
+            <div className="w-3 h-3 rounded-full border border-[#38BDF8]/50" style={{ backgroundColor: '#0284c7', boxShadow: '0 0 8px rgba(2,132,199,0.4)' }} />
             <span className="text-gray-300 font-medium">Phase 3: Production (Q4 2026)</span>
           </div>
           <div className="flex items-center gap-3 text-xs">
-            <div className="w-3 h-3 rounded-full border border-cyan-600/50" style={{ backgroundColor: '#155E75', boxShadow: '0 0 6px #155E7530' }} />
+            <div className="w-3 h-3 rounded-full border border-[#38BDF8]/30" style={{ backgroundColor: '#0c4a6e', boxShadow: '0 0 6px rgba(12,74,110,0.3)' }} />
             <span className="text-gray-400 font-medium">Future: Advanced (2027+)</span>
           </div>
         </div>
-        <div className="mt-4 pt-3 border-t border-cyan-400/10">
-          <h4 className="text-xs font-semibold mb-2 text-cyan-400/80">Status</h4>
+        <div className="mt-4 pt-3 border-t border-[#38BDF8]/10">
+          <h4 className="text-xs font-semibold mb-2 text-[#38BDF8]/80">Status</h4>
           <div className="flex gap-4 text-xs">
             <div className="flex items-center gap-1.5">
               <div className="w-2 h-2 rounded-full bg-green-400 shadow-sm shadow-green-400/50" />
               <span className="text-gray-400">Done</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
               <span className="text-gray-400">Active</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-full bg-cyan-900" />
+              <div className="w-2 h-2 rounded-full bg-[#0c4a6e]" />
               <span className="text-gray-400">Next</span>
             </div>
           </div>
@@ -615,7 +626,7 @@ export default function InteractiveRoadmap() {
           <defs>
             <pattern id="futuristicGrid" width="40" height="40" patternUnits="userSpaceOnUse">
               <rect width="40" height="40" fill="none" stroke="#1E293B" strokeWidth="0.5" opacity="0.3"/>
-              <circle cx="20" cy="20" r="1" fill="#06B6D4" opacity="0.4">
+              <circle cx="20" cy="20" r="1" fill="#38BDF8" opacity="0.4">
                 <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite"/>
               </circle>
             </pattern>
@@ -637,19 +648,19 @@ export default function InteractiveRoadmap() {
               </feMerge>
             </filter>
             
-            {/* Animated gradient for connections - cyan only */}
+            {/* Animated gradient for connections - matching home page cyan */}
             <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#22D3EE" stopOpacity="0.9">
+              <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.9">
                 <animate attributeName="stopOpacity"
                   values="0.9;0.4;0.9"
                   dur="3s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="50%" stopColor="#06B6D4" stopOpacity="0.6">
+              <stop offset="50%" stopColor="#0ea5e9" stopOpacity="0.6">
                 <animate attributeName="stopOpacity"
                   values="0.6;1;0.6"
                   dur="3s" repeatCount="indefinite"/>
               </stop>
-              <stop offset="100%" stopColor="#0891B2" stopOpacity="0.9">
+              <stop offset="100%" stopColor="#0284c7" stopOpacity="0.9">
                 <animate attributeName="stopOpacity"
                   values="0.9;0.4;0.9"
                   dur="3s" repeatCount="indefinite"/>
@@ -657,9 +668,9 @@ export default function InteractiveRoadmap() {
             </linearGradient>
           </defs>
           
-          {/* Background */}
-          <rect width="100%" height="100%" fill="#0A0A0A"/>
-          <rect width="100%" height="100%" fill="url(#futuristicGrid)" opacity="0.6"/>
+          {/* Background - transparent to show page aurora */}
+          <rect width="100%" height="100%" fill="transparent"/>
+          <rect width="100%" height="100%" fill="url(#futuristicGrid)" opacity="0.4"/>
 
           {/* Technical Header Section */}
           <foreignObject x="200" y="25" width="600" height="220">
@@ -737,7 +748,7 @@ export default function InteractiveRoadmap() {
                 y1={separator.y}
                 x2="920"
                 y2={separator.y}
-                stroke="#22D3EE"
+                stroke="#38BDF8"
                 strokeWidth="1"
                 opacity="0.15"
               />
@@ -764,7 +775,7 @@ export default function InteractiveRoadmap() {
             </g>
           ))}
 
-          {/* Technical Phase Indicators - Unified Cyan */}
+          {/* Technical Phase Indicators - Matching home page cyan */}
           {[
             {
               label: 'Phase 1',
@@ -772,7 +783,7 @@ export default function InteractiveRoadmap() {
               period: 'Q1-Q2 2026',
               y: 280,
               opacity: 1,
-              glow: '#22D3EE'
+              glow: '#38BDF8'
             },
             {
               label: 'Phase 2',
@@ -780,7 +791,7 @@ export default function InteractiveRoadmap() {
               period: 'Q3 2026',
               y: 600,
               opacity: 0.85,
-              glow: '#06B6D4'
+              glow: '#0ea5e9'
             },
             {
               label: 'Phase 3',
@@ -788,7 +799,7 @@ export default function InteractiveRoadmap() {
               period: 'Q4 2026',
               y: 760,
               opacity: 0.7,
-              glow: '#0891B2'
+              glow: '#0284c7'
             },
             {
               label: 'Future',
@@ -796,7 +807,7 @@ export default function InteractiveRoadmap() {
               period: '2027+',
               y: 920,
               opacity: 0.55,
-              glow: '#155E75'
+              glow: '#0c4a6e'
             }
           ].map((phase, index) => (
             <g key={index}>
@@ -998,7 +1009,7 @@ export default function InteractiveRoadmap() {
 
       {/* Enhanced Selected Item Details */}
       {selectedItem && (
-        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-gray-950/95 rounded-2xl p-6 border border-cyan-400/30 backdrop-blur-xl z-30 shadow-xl shadow-cyan-500/10">
+        <div className="absolute bottom-4 right-4 left-4 lg:left-auto lg:w-96 bg-gray-950/95 rounded-2xl p-6 border border-[#38BDF8]/30 backdrop-blur-xl z-30 shadow-xl shadow-[#38BDF8]/10">
           {(() => {
             const item = roadmapData.find(i => i.id === selectedItem);
             if (!item) return null;
@@ -1196,19 +1207,19 @@ export default function InteractiveRoadmap() {
       )}
 
       {/* Enhanced Instructions */}
-      <div className="absolute bottom-4 right-4 z-20 bg-gray-950/90 rounded-lg p-3 border border-cyan-400/20 backdrop-blur-md shadow-lg shadow-cyan-500/5">
-        <div className="text-xs text-cyan-400 font-semibold mb-2 tracking-wide">Navigation</div>
+      <div className="absolute bottom-4 right-4 z-20 bg-gray-950/90 rounded-lg p-3 border border-[#38BDF8]/20 backdrop-blur-md shadow-lg shadow-[#38BDF8]/5">
+        <div className="text-xs text-[#38BDF8] font-semibold mb-2 tracking-wide">Navigation</div>
         <div className="text-xs text-gray-400 space-y-1.5">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-sm shadow-cyan-400/50"></span>
+            <span className="w-1.5 h-1.5 bg-[#38BDF8] rounded-full shadow-sm shadow-[#38BDF8]/50"></span>
             <span>Scroll to zoom • Drag to pan</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full shadow-sm shadow-cyan-500/50"></span>
+            <span className="w-1.5 h-1.5 bg-[#0ea5e9] rounded-full shadow-sm shadow-[#0ea5e9]/50"></span>
             <span>Click nodes for details</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-cyan-600 rounded-full shadow-sm shadow-cyan-600/50"></span>
+            <span className="w-1.5 h-1.5 bg-[#0284c7] rounded-full shadow-sm shadow-[#0284c7]/50"></span>
             <span>Press ESC to deselect</span>
           </div>
         </div>
