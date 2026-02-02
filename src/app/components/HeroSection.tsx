@@ -179,6 +179,7 @@ export default function HeroSection() {
                 strokeOpacity="0.1"
                 strokeWidth="1"
                 strokeDasharray="10 20"
+                shapeRendering="geometricPrecision"
                 className="animate-spin-slow"
                 style={{ transformOrigin: '300px 300px' }}
               />
@@ -193,6 +194,7 @@ export default function HeroSection() {
                 strokeOpacity="0.2"
                 strokeWidth="1"
                 strokeDasharray="4 6"
+                shapeRendering="geometricPrecision"
                 className="animate-spin-slower"
                 style={{ transformOrigin: '300px 300px' }}
               />
@@ -210,9 +212,28 @@ export default function HeroSection() {
                 fill="none"
                 stroke="#38BDF8"
                 strokeWidth="1.5"
-                strokeDasharray="80 1000"
-                className="animate-beam"
-              />
+                strokeDasharray="80 320"
+                strokeDashoffset="320"
+                opacity="0"
+                shapeRendering="geometricPrecision"
+              >
+                <animate
+                  attributeName="opacity"
+                  from="0"
+                  to="1"
+                  dur="0.01s"
+                  begin="0s"
+                  fill="freeze"
+                />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="320"
+                  to="-80"
+                  dur="3s"
+                  repeatCount="indefinite"
+                  calcMode="linear"
+                />
+              </path>
 
               {/* Curved Bezier Lines - Lower */}
               <path
@@ -227,10 +248,29 @@ export default function HeroSection() {
                 fill="none"
                 stroke="#38BDF8"
                 strokeWidth="1.5"
-                strokeDasharray="80 1000"
-                className="animate-beam"
-                style={{ animationDelay: '1.5s' }}
-              />
+                strokeDasharray="80 320"
+                strokeDashoffset="320"
+                opacity="0"
+                shapeRendering="geometricPrecision"
+              >
+                <animate
+                  attributeName="opacity"
+                  from="0"
+                  to="1"
+                  dur="0.01s"
+                  begin="1.5s"
+                  fill="freeze"
+                />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="320"
+                  to="-80"
+                  dur="3s"
+                  begin="1.5s"
+                  repeatCount="indefinite"
+                  calcMode="linear"
+                />
+              </path>
 
               {/* Curved Line - Right Side Upper */}
               <path
@@ -245,10 +285,29 @@ export default function HeroSection() {
                 fill="none"
                 stroke="#38BDF8"
                 strokeWidth="1.5"
-                strokeDasharray="60 1000"
-                className="animate-beam"
-                style={{ animationDelay: '0.75s' }}
-              />
+                strokeDasharray="60 320"
+                strokeDashoffset="320"
+                opacity="0"
+                shapeRendering="geometricPrecision"
+              >
+                <animate
+                  attributeName="opacity"
+                  from="0"
+                  to="1"
+                  dur="0.01s"
+                  begin="0.75s"
+                  fill="freeze"
+                />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="320"
+                  to="-60"
+                  dur="3s"
+                  begin="0.75s"
+                  repeatCount="indefinite"
+                  calcMode="linear"
+                />
+              </path>
 
               {/* Curved Line - Right Side Lower */}
               <path
@@ -263,10 +322,29 @@ export default function HeroSection() {
                 fill="none"
                 stroke="#38BDF8"
                 strokeWidth="1.5"
-                strokeDasharray="60 1000"
-                className="animate-beam"
-                style={{ animationDelay: '2.25s' }}
-              />
+                strokeDasharray="60 320"
+                strokeDashoffset="320"
+                opacity="0"
+                shapeRendering="geometricPrecision"
+              >
+                <animate
+                  attributeName="opacity"
+                  from="0"
+                  to="1"
+                  dur="0.01s"
+                  begin="2.25s"
+                  fill="freeze"
+                />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="320"
+                  to="-60"
+                  dur="3s"
+                  begin="2.25s"
+                  repeatCount="indefinite"
+                  calcMode="linear"
+                />
+              </path>
 
               {/* Center Focal Point */}
               {/* Outer Ring */}
@@ -359,43 +437,34 @@ export default function HeroSection() {
           animation: sonar-wave 3s ease-out infinite;
         }
 
-        @keyframes beam {
-          0% {
-            stroke-dashoffset: 1000;
-          }
-          100% {
-            stroke-dashoffset: 0;
-          }
-        }
-
-        .animate-beam {
-          animation: beam 3s linear infinite;
-        }
-
         @keyframes spin-slow {
           0% {
-            transform: rotate(0deg);
+            transform: rotate(0deg) translateZ(0);
           }
           100% {
-            transform: rotate(360deg);
+            transform: rotate(360deg) translateZ(0);
           }
         }
 
         .animate-spin-slow {
           animation: spin-slow 12s linear infinite;
+          will-change: transform;
+          backface-visibility: hidden;
         }
 
         @keyframes spin-slower {
           0% {
-            transform: rotate(0deg);
+            transform: rotate(0deg) translateZ(0);
           }
           100% {
-            transform: rotate(-360deg);
+            transform: rotate(-360deg) translateZ(0);
           }
         }
 
         .animate-spin-slower {
           animation: spin-slower 15s linear infinite;
+          will-change: transform;
+          backface-visibility: hidden;
         }
 
         @keyframes pulse-glow {
