@@ -150,30 +150,9 @@ export default function PillarsSection() {
   const cyanColor = "#38BDF8";
 
   return (
-    <section ref={sectionRef} className="relative py-32 overflow-hidden bg-[#030303]">
-      {/* Grid Pattern Background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px'
-        }}
-      />
-
-      {/* Subtle cyan glow accents */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-1/4 left-[10%] w-[400px] h-[400px] rounded-full blur-3xl opacity-[0.04]"
-          style={{ background: `radial-gradient(circle, ${cyanColor} 0%, transparent 70%)` }}
-        />
-        <div
-          className="absolute bottom-1/4 right-[10%] w-[350px] h-[350px] rounded-full blur-3xl opacity-[0.03]"
-          style={{ background: `radial-gradient(circle, ${cyanColor} 0%, transparent 70%)` }}
-        />
-      </div>
+    <section ref={sectionRef} className="relative py-32 overflow-hidden">
+      {/* Semi-transparent overlay to reduce aurora effect */}
+      <div className="absolute inset-0 bg-[#030303]/80 pointer-events-none" />
 
       {/* Top border line */}
       <div

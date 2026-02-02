@@ -404,8 +404,8 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-4 text-sm font-medium">
-          <a href="/whitepaper" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all">WHITEPAPER</a>
+        <div className="hidden md:flex items-center space-x-4 text-sm font-medium" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+          <a href="/whitepaper" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all tracking-wider">WHITEPAPER</a>
 
           {/* Company Dropdown */}
           <div className="relative">
@@ -416,7 +416,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
               onKeyDown={handleCompanyKeyDown}
               onPointerEnter={handleTriggerPointerEnter}
               onPointerLeave={handleTriggerPointerLeave}
-              className="flex items-center gap-1 px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all"
+              className="flex items-center gap-1 px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all tracking-wider"
               aria-haspopup="true"
               aria-expanded={isCompanyOpen}
               aria-controls="company-menu"
@@ -440,8 +440,8 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
               onPointerEnter={handlePanelPointerEnter}
               onPointerLeave={handlePanelPointerLeave}
               className={`absolute top-full mt-2 w-105 grid grid-cols-2 gap-6 p-6
-                rounded-xl border-2 border-dashed border-white/50
-                backdrop-blur-md bg-transparent
+                rounded-xl border border-[#38BDF8]/30
+                backdrop-blur-md bg-[#030303]/90
                 transition-all duration-200 origin-top-left
                 pointer-events-auto z-50
                 ${isCompanyOpen
@@ -467,17 +467,17 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
                             key={link.href}
                             href={link.href}
                             role="menuitem"
-                            className="flex items-center gap-3 p-2 -mx-2 rounded-lg hover:bg-gray-800/50 transition-colors group"
+                            className="flex items-center gap-3 p-2 -mx-2 rounded-lg hover:bg-[#38BDF8]/10 transition-colors group"
                             onKeyDown={(e) => handleMenuItemKeyDown(e, currentIndex, totalItems)}
                             {...(isExternal && !link.href.startsWith('mailto:') && { target: "_blank", rel: "noopener noreferrer" })}
                           >
                             {link.icon && (
-                              <span className="text-gray-400 group-hover:text-cyan-400 transition-colors">
+                              <span className="text-gray-400 group-hover:text-[#38BDF8] transition-colors">
                                 {link.icon}
                               </span>
                             )}
                             <div>
-                              <div className="text-sm font-medium text-white group-hover:text-cyan-400 transition-colors">
+                              <div className="text-sm font-medium text-white group-hover:text-[#38BDF8] transition-colors">
                                 {link.title}
                               </div>
                               <div className="text-xs text-gray-400 mt-0.5">
@@ -494,8 +494,8 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
             </div>
           </div>
 
-          <a href="https://www.docs.defiesta.xyz/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all">DOCS</a>
-          <a href="/roadmap" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all">ROADMAP</a>
+          <a href="https://www.docs.defiesta.xyz/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all tracking-wider">DOCS</a>
+          <a href="/roadmap" className="px-4 py-2 rounded-lg border border-dashed border-white/30 hover:border-white/60 hover:text-gray-300 transition-all tracking-wider">ROADMAP</a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -542,11 +542,11 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
             </div>
 
             {/* Main Menu Items */}
-            <div className="flex-1 flex flex-col justify-center px-6">
+            <div className="flex-1 flex flex-col justify-center px-6" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
               <div className="space-y-8 text-center">
                 <a
                   href="/whitepaper"
-                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300"
+                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300 tracking-wider"
                   onClick={() => {
                     setIsMenuOpen(false);
                     onMenuToggle?.(false);
@@ -559,7 +559,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
                 <div className="text-center">
                   <button
                     onClick={() => setIsMobileCompanyOpen(prev => !prev)}
-                    className="inline-flex items-center gap-2 text-md font-light text-white hover:text-cyan-400 transition-all duration-300"
+                    className="inline-flex items-center gap-2 text-md font-light text-white hover:text-cyan-400 transition-all duration-300 tracking-wider"
                     aria-expanded={isMobileCompanyOpen}
                   >
                     COMPANY
@@ -613,7 +613,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
                   href="https://www.docs.defiesta.xyz/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300"
+                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300 tracking-wider"
                   onClick={() => {
                     setIsMenuOpen(false);
                     onMenuToggle?.(false);
@@ -623,7 +623,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: (isOpen: boole
                 </a>
                 <a
                   href="/roadmap"
-                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300"
+                  className="block text-md font-light text-white hover:text-cyan-400 transition-all duration-300 tracking-wider"
                   onClick={() => {
                     setIsMenuOpen(false);
                     onMenuToggle?.(false);

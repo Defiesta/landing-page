@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import AuroraBackground from './AuroraBackground';
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -11,26 +10,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Base Background - Near Black */}
-      <div className="absolute inset-0 z-0 bg-[#030303]" />
-
-      {/* Grid Pattern Overlay */}
-      <div
-        className="absolute inset-0 z-[1]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 200px'
-        }}
-      />
-
-      {/* Animated Aurora Background - Flowing Pixel Noise */}
-      <div className="absolute inset-0 z-[2]">
-        <AuroraBackground />
-      </div>
-
       {/* Dot Pattern Overlay - Right Side */}
       <div
         className="absolute top-0 right-0 w-1/2 h-full pointer-events-none z-[3]"
@@ -76,7 +55,7 @@ export default function HeroSection() {
           {/* Subtitle */}
           <p
             className={`text-lg md:text-xl text-gray-400 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-            style={{ transitionDelay: '600ms' }}
+            style={{ transitionDelay: '600ms', fontFamily: 'var(--font-jetbrains-mono), monospace' }}
           >
             Deploy Machine Learning agents that execute DeFi strategies with{' '}
             <span className="text-[#38BDF8]">zero-knowledge proofs</span>.
@@ -101,7 +80,7 @@ export default function HeroSection() {
                 }}
               />
               <div className="absolute inset-[1.5px] rounded-full bg-[#0a0a0f]" />
-              <span className="relative z-10 flex items-center gap-2 text-[#38BDF8] font-medium">
+              <span className="relative z-10 flex items-center gap-2 text-[#38BDF8] font-medium" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
                 Initialize Protocol
                 <svg
                   className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
@@ -117,23 +96,12 @@ export default function HeroSection() {
             <a
               href="/whitepaper"
               className="px-8 py-4 rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/20 transition-all duration-300"
+              style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}
             >
               Learn More
             </a>
           </div>
 
-          {/* Status Indicators */}
-          <div
-            className={`flex items-center justify-center lg:justify-start gap-6 mt-12 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-            style={{ transitionDelay: '1000ms' }}
-          >
-            <div className="flex items-center gap-1">
-              <div className="w-1 h-1 bg-white/20"></div>
-              <div className="w-1 h-1 bg-white/20"></div>
-              <div className="w-1 h-1 bg-[#38BDF8] animate-pulse"></div>
-            </div>
-            <span className="text-xs text-gray-500 tracking-wider uppercase">Protocol Active</span>
-          </div>
         </div>
 
         {/* Right Side - Radar Visualization - Hidden on mobile */}

@@ -74,18 +74,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="relative z-10 mt-20 bg-[#030303]">
-      {/* Grid Pattern Background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px'
-        }}
-      />
+    <footer ref={footerRef} className="relative z-10 bg-[#030303]">
 
       {/* Top gradient line */}
       <div className="h-[1px] bg-gradient-to-r from-transparent via-[#38BDF8]/30 to-transparent"></div>
@@ -227,20 +216,6 @@ export default function Footer() {
               </span>
             </div>
 
-            {/* Status indicator */}
-            <div className={`flex items-center gap-2 transition-all duration-700 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-              <div className="flex items-center gap-1">
-                <div className="w-1 h-1 bg-white/20"></div>
-                <div className="w-1 h-1 bg-white/20"></div>
-                <div className="w-1 h-1 bg-[#38BDF8] animate-pulse"></div>
-              </div>
-              <span
-                className="text-xs text-gray-500 tracking-wider uppercase"
-                style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}
-              >
-                Protocol Active
-              </span>
-            </div>
           </div>
         </div>
       </div>
